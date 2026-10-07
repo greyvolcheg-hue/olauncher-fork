@@ -2,6 +2,8 @@ package app.olauncher
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.appwidget.AppWidgetManager
+import android.appwidget.AppWidgetProviderInfo
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -33,6 +35,7 @@ import app.olauncher.helper.isDarkThemeOn
 import app.olauncher.helper.isDaySince
 import app.olauncher.helper.isDefaultLauncher
 import app.olauncher.helper.OlDialog
+import app.olauncher.helper.Widgets
 import app.olauncher.helper.isEinkDisplay
 import app.olauncher.helper.isOlauncherDefault
 import app.olauncher.helper.isSystemAnimationsDisabled
@@ -61,6 +64,19 @@ class MainActivity : AppCompatActivity() {
     private val importFoldersLauncher =
         registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
             uri?.let { viewModel.importFolders(it) }
+        }
+
+    // The widget being added; its bind and configure results come back here
+    private var pendingWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
+    private var pendingWidgetInfo: AppWidgetProviderInfo? = null
+
+    private val bindWidgetLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val info = pendingWidgetInfo
+            if (result.resultCode == Activity.RESULT_OK && info != null)
+                configureOrPlaceWidget(pendingWidgetId, info)
+            else
+                discardPendingWidget()
         }
     private var timerJob: Job? = null
     private var isResumed = false
@@ -135,6 +151,11 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         restartLauncherOrCheckTheme()
+        try {
+            Widgets.host(this).startListening()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun onResume() {
@@ -176,7 +197,60 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         isResumed = false
         backToHomeScreen()
+        try {
+            Widgets.host(this).stopListening()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         super.onStop()
+    }
+
+    private fun addWidget(info: AppWidgetProviderInfo) {
+        discardPendingWidget()
+        val appWidgetId = Widgets.host(this).allocateAppWidgetId()
+        pendingWidgetId = appWidgetId
+        pendingWidgetInfo = info
+        val bound = AppWidgetManager.getInstance(this)
+            .bindAppWidgetIdIfAllowed(appWidgetId, info.profile, info.provider, null)
+        if (bound)
+            configureOrPlaceWidget(appWidgetId, info)
+        else
+            bindWidgetLauncher.launch(
+                Intent(AppWidgetManager.ACTION_APPWIDGET_BIND)
+                    .putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+                    .putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, info.provider)
+                    .putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE, info.profile)
+            )
+    }
+
+    private fun configureOrPlaceWidget(appWidgetId: Int, info: AppWidgetProviderInfo) {
+        if (info.configure == null) {
+            placeWidget(appWidgetId)
+            return
+        }
+        try {
+            Widgets.host(this).startAppWidgetConfigureActivityForResult(
+                this, appWidgetId, 0, Constants.REQUEST_CODE_CONFIGURE_WIDGET, null
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+            showToast(getString(R.string.widget_add_failed))
+            discardPendingWidget()
+        }
+    }
+
+    private fun placeWidget(appWidgetId: Int) {
+        if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) return
+        prefs.widgetIds = prefs.widgetIds + appWidgetId
+        pendingWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
+        pendingWidgetInfo = null
+    }
+
+    private fun discardPendingWidget() {
+        if (pendingWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID)
+            Widgets.host(this).deleteAppWidgetId(pendingWidgetId)
+        pendingWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
+        pendingWidgetInfo = null
     }
 
     override fun onUserLeaveHint() {
@@ -206,6 +280,9 @@ class MainActivity : AppCompatActivity() {
     private fun initObservers(viewModel: MainViewModel) {
         viewModel.launcherResetFailed.observe(this) {
             openLauncherChooser(it)
+        }
+        viewModel.addWidget.observe(this) { info ->
+            info?.let { addWidget(it) }
         }
         viewModel.pickFoldersFile.observe(this) {
             importFoldersLauncher.launch(arrayOf("*/*"))
@@ -420,6 +497,13 @@ class MainActivity : AppCompatActivity() {
             Constants.REQUEST_CODE_LAUNCHER_SELECTOR -> {
                 if (resultCode == Activity.RESULT_OK)
                     resetLauncherViaFakeActivity()
+            }
+
+            Constants.REQUEST_CODE_CONFIGURE_WIDGET -> {
+                if (resultCode == Activity.RESULT_OK)
+                    placeWidget(pendingWidgetId)
+                else
+                    discardPendingWidget()
             }
         }
     }

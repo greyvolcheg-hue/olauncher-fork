@@ -1,6 +1,7 @@
 package app.olauncher.ui
 
 import android.app.admin.DevicePolicyManager
+import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.LauncherApps
@@ -14,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -41,6 +43,7 @@ import app.olauncher.helper.openCalendar
 import app.olauncher.helper.openCameraApp
 import app.olauncher.helper.openDialerApp
 import app.olauncher.helper.setPlainWallpaperByTheme
+import app.olauncher.helper.Widgets
 import app.olauncher.helper.showToast
 import app.olauncher.listener.OnSwipeTouchListener
 import app.olauncher.listener.ViewSwipeTouchListener
@@ -80,6 +83,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
     override fun onResume() {
         super.onResume()
         populateHomeScreen(false)
+        populateWidgets()
         viewModel.isOlauncherDefault()
         if (prefs.showStatusBar) showStatusBar()
         else hideStatusBar()
@@ -720,8 +724,40 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         }
     }
 
+    // Ids whose views are on screen, so returning home does not rebuild unchanged widgets
+    private var shownWidgetIds: List<Int>? = null
+
+    private fun populateWidgets() {
+        val ids = prefs.widgetIds
+        if (ids == shownWidgetIds) return
+        shownWidgetIds = ids
+
+        val context = requireContext()
+        val manager = AppWidgetManager.getInstance(context)
+        val host = Widgets.host(context)
+        val container = binding.widgetsLayout
+        container.removeAllViews()
+
+        val density = resources.displayMetrics.density
+        val widthPx = resources.displayMetrics.widthPixels -
+            binding.homeAppsLayout.paddingLeft - binding.homeAppsLayout.paddingRight
+        val widthDp = (widthPx / density).toInt()
+        for (appWidgetId in ids) {
+            val info = manager.getAppWidgetInfo(appWidgetId) ?: continue // provider uninstalled
+            val hostView = host.createView(context, appWidgetId, info)
+            val heightDp = (info.minHeight / density).toInt()
+            @Suppress("DEPRECATION")
+            hostView.updateAppWidgetSize(Bundle(), widthDp, heightDp, widthDp, heightDp)
+            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, info.minHeight)
+            params.topMargin = 16.dpToPx()
+            container.addView(hostView, params)
+        }
+        container.isVisible = container.childCount > 0
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        shownWidgetIds = null
         _binding = null
     }
 }

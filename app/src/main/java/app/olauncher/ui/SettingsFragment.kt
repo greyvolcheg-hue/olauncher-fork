@@ -40,6 +40,7 @@ import app.olauncher.helper.rateApp
 import app.olauncher.helper.setPlainWallpaper
 import app.olauncher.helper.shareApp
 import app.olauncher.helper.OlDialog
+import app.olauncher.helper.Widgets
 import app.olauncher.helper.showPopupMenu
 import app.olauncher.helper.showStatusBar
 import app.olauncher.helper.showToast
@@ -105,6 +106,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
             R.id.appInfo -> openAppInfo(requireContext(), Process.myUserHandle(), BuildConfig.APPLICATION_ID)
             R.id.setLauncher -> viewModel.resetLauncherLiveData.call()
             R.id.importFolders -> viewModel.pickFoldersFile.call()
+            R.id.widgets -> showWidgetsMenu(view)
             R.id.toggleLock -> toggleLockMode()
             // Home button for recents feature disabled
             // R.id.homeButtonRecents -> toggleHomeButtonRecents()
@@ -166,6 +168,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.appInfo.setOnClickListener(this)
         binding.setLauncher.setOnClickListener(this)
         binding.importFolders.setOnClickListener(this)
+        binding.widgets.setOnClickListener(this)
         binding.aboutOlauncher.setOnClickListener(this)
         binding.moreFeatures.setOnClickListener(this)
         binding.autoShowKeyboard.setOnClickListener(this)
@@ -358,6 +361,44 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
                 Constants.DateTime.ON -> R.string.on
                 else -> R.string.off
             }
+        )
+    }
+
+    // Placed widgets first (tap one to remove it), then "Add widget"
+    private fun showWidgetsMenu(anchor: View) {
+        val ids = prefs.widgetIds
+        anchor.showPopupMenu(configure = { menu ->
+            ids.forEachIndexed { index, appWidgetId ->
+                val label = Widgets.label(requireContext(), appWidgetId) ?: getString(R.string.widget_missing)
+                menu.add(0, index, index, label)
+            }
+            menu.add(0, MENU_ADD_WIDGET, ids.size, R.string.add_widget)
+        }) { item ->
+            if (item.itemId == MENU_ADD_WIDGET) showWidgetProviders(anchor)
+            else ids.getOrNull(item.itemId)?.let { confirmRemoveWidget(it) }
+        }
+    }
+
+    private fun showWidgetProviders(anchor: View) {
+        val providers = Widgets.providers(requireContext())
+        anchor.showPopupMenu(configure = { menu ->
+            providers.forEachIndexed { index, (label, _) -> menu.add(0, index, index, label) }
+        }) { item ->
+            providers.getOrNull(item.itemId)?.let { viewModel.addWidget.value = it.second }
+        }
+    }
+
+    private fun confirmRemoveWidget(appWidgetId: Int) {
+        showDialog(
+            requireContext().createDialog(
+                title = R.string.remove_widget,
+                action = R.string.remove_widget,
+                message = R.string.remove_widget_message,
+                onAction = {
+                    Widgets.host(requireContext()).deleteAppWidgetId(appWidgetId)
+                    prefs.widgetIds = prefs.widgetIds - appWidgetId
+                }
+            )
         )
     }
 
@@ -675,5 +716,9 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
     override fun onDestroy() {
         viewModel.checkForMessages.call()
         super.onDestroy()
+    }
+
+    companion object {
+        private const val MENU_ADD_WIDGET = 100_000
     }
 }

@@ -1,6 +1,7 @@
 package app.olauncher
 
 import android.app.Application
+import android.appwidget.AppWidgetProviderInfo
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -68,6 +69,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val checkForMessages = SingleLiveEvent<Unit?>()
     val resetLauncherLiveData = SingleLiveEvent<Unit?>()
     val pickFoldersFile = SingleLiveEvent<Unit?>()
+    val addWidget = SingleLiveEvent<AppWidgetProviderInfo>()
     // Home button for recents feature disabled
     // val showRecentApps = SingleLiveEvent<Unit?>()
 

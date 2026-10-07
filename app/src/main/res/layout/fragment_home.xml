@@ -179,6 +179,14 @@
             android:visibility="gone"
             tools:visibility="visible" />
 
+        <!-- Widgets, below the home apps -->
+        <LinearLayout
+            android:id="@+id/widgetsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
     </LinearLayout>
 
     <TextView
