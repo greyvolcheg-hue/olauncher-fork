@@ -159,4 +159,12 @@
     <string name="import_folders">Импорт папок из CSV</string>
     <string name="import_folders_result">Разложено по папкам: %1$d, не найдено названий: %2$d</string>
     <string name="import_folders_failed">Не удалось прочитать файл</string>
+
+    <!-- Widgets (fork) -->
+    <string name="widgets">Виджеты</string>
+    <string name="add_widget">Добавить виджет</string>
+    <string name="remove_widget">Убрать виджет</string>
+    <string name="remove_widget_message">Он исчезнет с главного экрана.</string>
+    <string name="widget_missing">Недоступный виджет</string>
+    <string name="widget_add_failed">Не удалось добавить виджет</string>
 </resources><!-- Russian -->

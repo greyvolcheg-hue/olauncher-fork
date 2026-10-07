@@ -32,6 +32,7 @@ class Prefs(context: Context) {
     private val HIDDEN_APPS_UPDATED = "HIDDEN_APPS_UPDATED"
     private val FOLDERS = "FOLDERS"
     private val APP_FOLDERS = "APP_FOLDERS"
+    private val WIDGET_IDS = "WIDGET_IDS"
     private val SHOW_HINT_COUNTER = "SHOW_HINT_COUNTER"
     private val APP_THEME = "APP_THEME"
     private val ABOUT_CLICKED = "ABOUT_CLICKED"
@@ -253,6 +254,11 @@ class Prefs(context: Context) {
             emptyMap()
         }
         set(value) = prefs.edit { putString(APP_FOLDERS, JSONObject(value).toString()).apply() }
+
+    // Home screen widgets in display order
+    var widgetIds: List<Int>
+        get() = prefs.getString(WIDGET_IDS, "").orEmpty().split(",").mapNotNull { it.toIntOrNull() }
+        set(value) = prefs.edit { putString(WIDGET_IDS, value.joinToString(",")).apply() }
 
     var toShowHintCounter: Int
         get() = prefs.getInt(SHOW_HINT_COUNTER, 1)

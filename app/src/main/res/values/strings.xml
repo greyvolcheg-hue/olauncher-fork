@@ -188,4 +188,12 @@
     <string name="import_folders">Import folders from CSV</string>
     <string name="import_folders_result">%1$d apps put in folders, %2$d names not found</string>
     <string name="import_folders_failed">Could not read the file</string>
+
+    <!-- Widgets (fork) -->
+    <string name="widgets">Widgets</string>
+    <string name="add_widget">Add widget</string>
+    <string name="remove_widget">Remove widget</string>
+    <string name="remove_widget_message">It disappears from the home screen.</string>
+    <string name="widget_missing">Unavailable widget</string>
+    <string name="widget_add_failed">Could not add the widget</string>
 </resources>
