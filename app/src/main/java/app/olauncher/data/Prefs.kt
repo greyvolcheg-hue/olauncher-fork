@@ -31,6 +31,7 @@ class Prefs(context: Context) {
     private val FOLDERS = "FOLDERS"
     private val APP_FOLDERS = "APP_FOLDERS"
     private val WIDGET_IDS = "WIDGET_IDS"
+    private val WIDGET_ROWS = "WIDGET_ROWS"
     private val FONT_FAMILY = "FONT_FAMILY"
     private val FONT_FILE_NAME = "FONT_FILE_NAME"
     private val ROW_SPACING = "ROW_SPACING"
@@ -247,10 +248,17 @@ class Prefs(context: Context) {
         get() = prefs.getInt(ROW_SPACING, -1)
         set(value) = prefs.edit { putInt(ROW_SPACING, value).apply() }
 
-    // Home screen widgets in display order
-    var widgetIds: List<Int>
-        get() = prefs.getString(WIDGET_IDS, "").orEmpty().split(",").mapNotNull { it.toIntOrNull() }
-        set(value) = prefs.edit { putString(WIDGET_IDS, value.joinToString(",")).apply() }
+    // Home screen widgets: rows top to bottom, each row left to right, stored as "1,2;3".
+    // Before rows existed WIDGET_IDS held one widget per row.
+    var widgetRows: List<List<Int>>
+        get() {
+            val stored = prefs.getString(WIDGET_ROWS, null)
+                ?: prefs.getString(WIDGET_IDS, "").orEmpty().replace(',', ';')
+            return stored.split(";")
+                .map { row -> row.split(",").mapNotNull { it.toIntOrNull() } }
+                .filter { it.isNotEmpty() }
+        }
+        set(value) = prefs.edit { putString(WIDGET_ROWS, value.joinToString(";") { it.joinToString(",") }).apply() }
 
     var appName1: String
         get() = prefs.getString(APP_NAME_1, "").toString()

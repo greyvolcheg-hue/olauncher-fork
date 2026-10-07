@@ -734,46 +734,57 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         ).forEach { it.setVerticalPadding(spacing) }
     }
 
-    // Ids whose views are on screen, so returning home does not rebuild unchanged widgets
-    private var shownWidgetIds: List<Int>? = null
+    // Rows whose views are on screen, so returning home does not rebuild unchanged widgets
+    private var shownWidgetRows: List<List<Int>>? = null
     private var defaultAppsPaddingTop = 0
 
-    // Widgets share the free height between the date and the home apps equally. Each is told
-    // its real size once laid out, so it can pick a layout that fills it.
+    // Rows share the free height between the date and the home apps equally, and widgets in a row
+    // share its width. Each widget is told its real size once laid out, to pick a fitting layout.
     private fun populateWidgets() {
-        val ids = prefs.widgetIds
-        if (ids == shownWidgetIds) return
-        shownWidgetIds = ids
+        val rows = prefs.widgetRows
+        if (rows == shownWidgetRows) return
+        shownWidgetRows = rows
 
         val context = requireContext()
         val manager = AppWidgetManager.getInstance(context)
-        val host = Widgets.host(context)
         val container = binding.widgetsLayout
         container.removeAllViews()
 
-        for (appWidgetId in ids) {
-            val info = manager.getAppWidgetInfo(appWidgetId) ?: continue // provider uninstalled
-            // Application context: the activity's inflater would put the app font on widget text
-            val hostView = host.createView(context.applicationContext, appWidgetId, info)
-            hostView.addOnLayoutChangeListener { view, left, top, right, bottom, _, _, _, _ ->
-                val density = view.resources.displayMetrics.density
-                val widthDp = ((right - left) / density).toInt()
-                val heightDp = ((bottom - top) / density).toInt()
-                // The system keeps the last size sent; resending it would make the widget redraw
-                // every time the home screen is rebuilt
-                val options = manager.getAppWidgetOptions(appWidgetId)
-                if (options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH) == widthDp &&
-                    options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT) == heightDp
-                ) return@addOnLayoutChangeListener
-                @Suppress("DEPRECATION")
-                view.post { hostView.updateAppWidgetSize(Bundle(), widthDp, heightDp, widthDp, heightDp) }
+        for (row in rows) {
+            val rowLayout = LinearLayout(context)
+            for (appWidgetId in row) {
+                val hostView = createWidgetView(manager, appWidgetId) ?: continue
+                val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
+                if (rowLayout.childCount > 0) params.marginStart = 16.dpToPx()
+                rowLayout.addView(hostView, params)
             }
+            if (rowLayout.childCount == 0) continue
             val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f)
             if (container.childCount > 0) params.topMargin = 16.dpToPx()
-            container.addView(hostView, params)
+            container.addView(rowLayout, params)
         }
         container.isVisible = container.childCount > 0
         placeWidgetsArea()
+    }
+
+    private fun createWidgetView(manager: AppWidgetManager, appWidgetId: Int): View? {
+        val info = manager.getAppWidgetInfo(appWidgetId) ?: return null // provider uninstalled
+        // Application context: the activity's inflater would put the app font on widget text
+        val hostView = Widgets.host(requireContext()).createView(requireContext().applicationContext, appWidgetId, info)
+        hostView.addOnLayoutChangeListener { view, left, top, right, bottom, _, _, _, _ ->
+            val density = view.resources.displayMetrics.density
+            val widthDp = ((right - left) / density).toInt()
+            val heightDp = ((bottom - top) / density).toInt()
+            // The system keeps the last size sent; resending it would make the widget redraw
+            // every time the home screen is rebuilt
+            val options = manager.getAppWidgetOptions(appWidgetId)
+            if (options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH) == widthDp &&
+                options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT) == heightDp
+            ) return@addOnLayoutChangeListener
+            @Suppress("DEPRECATION")
+            view.post { hostView.updateAppWidgetSize(Bundle(), widthDp, heightDp, widthDp, heightDp) }
+        }
+        return hostView
     }
 
     // With widgets the home apps layout starts just under the date, so the widgets get all the
@@ -804,7 +815,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
     override fun onDestroyView() {
         super.onDestroyView()
-        shownWidgetIds = null
+        shownWidgetRows = null
         _binding = null
     }
 }

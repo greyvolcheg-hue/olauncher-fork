@@ -195,11 +195,9 @@
     <string name="widgets">Widgets</string>
     <string name="add_widget">Add widget</string>
     <string name="remove_widget">Remove widget</string>
-    <string name="remove_widget_message">It disappears from the home screen.</string>
     <string name="widget_missing">Unavailable widget</string>
     <string name="widget_add_failed">Could not add the widget</string>
     <string name="no_widgets">No widgets yet.</string>
-    <string name="tap_widget_to_remove">Tap a widget to remove it.</string>
 
     <!-- Fonts (fork) -->
     <string name="font">Font</string>
@@ -216,4 +214,7 @@
     <!-- Fork links -->
     <string name="kofi">Buy me a coffee on Ko-fi</string>
     <string name="fork_attribution">Fork of Olauncher · GPLv3 · source code</string>
+    <string name="tap_widget_for_actions">The number is the row. Tap a widget to move or remove it.</string>
+    <string name="widget_join_row_above">Put beside the row above</string>
+    <string name="widget_own_row">Move to a row of its own</string>
 </resources>

@@ -330,18 +330,45 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         )
     }
 
-    // Placed widgets as a list (tap one to remove it); the action adds one
+    // Placed widgets with their row number; tapping one opens its actions, the action button adds one
     private fun showWidgetsDialog() {
-        val ids = prefs.widgetIds
-        val labels = ids.map { Widgets.label(requireContext(), it) ?: getString(R.string.widget_missing) }
+        val rows = prefs.widgetRows
+        val ids = rows.flatten()
+        val labels = rows.flatMapIndexed { row, rowIds ->
+            rowIds.map { "${row + 1} · ${widgetLabel(it)}" }
+        }
         showDialog(
             requireContext().createListDialog(
                 title = R.string.widgets,
                 items = labels,
                 action = R.string.add_widget,
-                message = if (ids.isEmpty()) R.string.no_widgets else R.string.tap_widget_to_remove,
+                message = if (ids.isEmpty()) R.string.no_widgets else R.string.tap_widget_for_actions,
                 onAction = { showWidgetProvidersDialog() },
-                onPick = { confirmRemoveWidget(ids[it]) }
+                onPick = { showWidgetActionsDialog(ids[it]) }
+            )
+        )
+    }
+
+    private fun widgetLabel(appWidgetId: Int) =
+        Widgets.label(requireContext(), appWidgetId) ?: getString(R.string.widget_missing)
+
+    // Only the moves that change something are offered
+    private fun showWidgetActionsDialog(appWidgetId: Int) {
+        val rows = prefs.widgetRows
+        val row = Widgets.rowOf(rows, appWidgetId)
+        val actions = mutableListOf<Pair<Int, () -> Unit>>()
+        if (row > 0)
+            actions.add(R.string.widget_join_row_above to { Widgets.joinRowAbove(prefs, appWidgetId) })
+        if (row >= 0 && rows[row].size > 1)
+            actions.add(R.string.widget_own_row to { Widgets.splitToOwnRow(prefs, appWidgetId) })
+        actions.add(R.string.remove_widget to { Widgets.remove(requireContext(), prefs, appWidgetId) })
+        showDialog(
+            requireContext().createListDialog(
+                title = R.string.widgets,
+                titleText = widgetLabel(appWidgetId),
+                items = actions.map { getString(it.first) },
+                action = R.string.close,
+                onPick = { actions[it].second() }
             )
         )
     }
@@ -358,19 +385,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         )
     }
 
-    private fun confirmRemoveWidget(appWidgetId: Int) {
-        showDialog(
-            requireContext().createDialog(
-                title = R.string.remove_widget,
-                action = R.string.remove_widget,
-                message = R.string.remove_widget_message,
-                onAction = {
-                    Widgets.host(requireContext()).deleteAppWidgetId(appWidgetId)
-                    prefs.widgetIds = prefs.widgetIds - appWidgetId
-                }
-            )
-        )
-    }
 
     private fun showHiddenApps() {
         if (prefs.hiddenApps.isEmpty()) {
