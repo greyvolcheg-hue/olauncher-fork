@@ -210,4 +210,6 @@
     <string name="font_monospace">Monospace</string>
     <string name="font_from_file">From file…</string>
     <string name="font_failed">This file is not a font Android can read</string>
+    <string name="line_spacing">Line spacing</string>
+    <string name="dp_value">%1$d dp</string>
 </resources>

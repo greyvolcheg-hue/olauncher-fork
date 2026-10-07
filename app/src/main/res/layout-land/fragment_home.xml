@@ -83,6 +83,17 @@
         android:orientation="vertical"
         android:paddingVertical="@dimen/home_app_padding_vertical">
 
+        <!-- Widgets fill the free height between the date and the home apps (weight 1).
+             HomeFragment moves homeAppsLayout's top padding to just under the date. -->
+        <LinearLayout
+            android:id="@+id/widgetsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/homeApp1"
             style="@style/TextLarge"
@@ -178,14 +189,6 @@
             android:tag="@string/tag_8"
             android:visibility="gone"
             tools:visibility="visible" />
-
-        <!-- Widgets, below the home apps -->
-        <LinearLayout
-            android:id="@+id/widgetsLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone" />
 
     </LinearLayout>
 

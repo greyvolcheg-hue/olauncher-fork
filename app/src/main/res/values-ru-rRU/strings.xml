@@ -181,4 +181,6 @@
     <string name="font_monospace">Моноширинный</string>
     <string name="font_from_file">Из файла…</string>
     <string name="font_failed">Android не может прочитать этот файл как шрифт</string>
+    <string name="line_spacing">Межстрочный интервал</string>
+    <string name="dp_value">%1$d dp</string>
 </resources><!-- Russian -->

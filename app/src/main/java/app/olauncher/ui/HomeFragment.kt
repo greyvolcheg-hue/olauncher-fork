@@ -44,6 +44,8 @@ import app.olauncher.helper.openCameraApp
 import app.olauncher.helper.openDialerApp
 import app.olauncher.helper.setPlainWallpaperByTheme
 import app.olauncher.helper.Widgets
+import app.olauncher.helper.rowSpacingPx
+import app.olauncher.helper.setVerticalPadding
 import app.olauncher.helper.showToast
 import app.olauncher.listener.OnSwipeTouchListener
 import app.olauncher.listener.ViewSwipeTouchListener
@@ -74,6 +76,8 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
         deviceManager = context?.getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
 
+        defaultAppsPaddingTop = binding.homeAppsLayout.paddingTop
+        binding.dateTimeLayout.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> placeWidgetsArea() }
         initObservers()
         setHomeAlignment(prefs.homeAlignment)
         initSwipeTouchListener()
@@ -83,7 +87,9 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
     override fun onResume() {
         super.onResume()
         populateHomeScreen(false)
+        applyRowSpacing()
         populateWidgets()
+        placeWidgetsArea()
         viewModel.isOlauncherDefault()
         if (prefs.showStatusBar) showStatusBar()
         else hideStatusBar()
@@ -724,9 +730,20 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         }
     }
 
+    private fun applyRowSpacing() {
+        val spacing = prefs.rowSpacingPx()
+        listOf(
+            binding.homeApp1, binding.homeApp2, binding.homeApp3, binding.homeApp4,
+            binding.homeApp5, binding.homeApp6, binding.homeApp7, binding.homeApp8,
+        ).forEach { it.setVerticalPadding(spacing) }
+    }
+
     // Ids whose views are on screen, so returning home does not rebuild unchanged widgets
     private var shownWidgetIds: List<Int>? = null
+    private var defaultAppsPaddingTop = 0
 
+    // Widgets share the free height between the date and the home apps equally. Each is told
+    // its real size once laid out, so it can pick a layout that fills it.
     private fun populateWidgets() {
         val ids = prefs.widgetIds
         if (ids == shownWidgetIds) return
@@ -738,22 +755,35 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         val container = binding.widgetsLayout
         container.removeAllViews()
 
-        val density = resources.displayMetrics.density
-        val widthPx = resources.displayMetrics.widthPixels -
-            binding.homeAppsLayout.paddingLeft - binding.homeAppsLayout.paddingRight
-        val widthDp = (widthPx / density).toInt()
         for (appWidgetId in ids) {
             val info = manager.getAppWidgetInfo(appWidgetId) ?: continue // provider uninstalled
             // Application context: the activity's inflater would put the app font on widget text
             val hostView = host.createView(context.applicationContext, appWidgetId, info)
-            val heightDp = (info.minHeight / density).toInt()
-            @Suppress("DEPRECATION")
-            hostView.updateAppWidgetSize(Bundle(), widthDp, heightDp, widthDp, heightDp)
-            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, info.minHeight)
-            params.topMargin = 16.dpToPx()
+            hostView.addOnLayoutChangeListener { view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
+                if (right - left == oldRight - oldLeft && bottom - top == oldBottom - oldTop) return@addOnLayoutChangeListener
+                val density = view.resources.displayMetrics.density
+                val widthDp = ((right - left) / density).toInt()
+                val heightDp = ((bottom - top) / density).toInt()
+                @Suppress("DEPRECATION")
+                view.post { hostView.updateAppWidgetSize(Bundle(), widthDp, heightDp, widthDp, heightDp) }
+            }
+            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f)
+            if (container.childCount > 0) params.topMargin = 16.dpToPx()
             container.addView(hostView, params)
         }
         container.isVisible = container.childCount > 0
+        placeWidgetsArea()
+    }
+
+    // With widgets the home apps layout starts just under the date, so the widgets get all the
+    // space down to the first app; without them it keeps its own top padding.
+    private fun placeWidgetsArea() {
+        val binding = _binding ?: return
+        val apps = binding.homeAppsLayout
+        val top = if (binding.widgetsLayout.isVisible && binding.dateTimeLayout.isVisible)
+            binding.dateTimeLayout.bottom + 16.dpToPx()
+        else defaultAppsPaddingTop
+        if (apps.paddingTop != top) apps.setPadding(apps.paddingLeft, top, apps.paddingRight, apps.paddingBottom)
     }
 
     override fun onDestroyView() {

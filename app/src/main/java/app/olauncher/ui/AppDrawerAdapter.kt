@@ -22,6 +22,7 @@ import app.olauncher.databinding.AdapterAppDrawerBinding
 import app.olauncher.databinding.AdapterPrivateSpaceHeaderBinding
 import app.olauncher.helper.hideKeyboard
 import app.olauncher.helper.isSystemApp
+import app.olauncher.helper.setVerticalPadding
 import app.olauncher.helper.showKeyboard
 import java.text.Normalizer
 
@@ -36,6 +37,7 @@ class AppDrawerAdapter(
     private val privateSpaceToggleListener: () -> Unit = {},
     private val privateSpaceSettingsListener: () -> Unit = {},
     private val appFolderListener: (AppModel, View) -> Unit = { _, _ -> },
+    private val rowSpacingPx: Int = -1,
 ) : ListAdapter<AppModel, RecyclerView.ViewHolder>(DIFF_CALLBACK), Filterable {
 
     companion object {
@@ -123,7 +125,8 @@ class AppDrawerAdapter(
                     appInfoListener,
                     appHideListener,
                     appRenameListener,
-                    appFolderListener
+                    appFolderListener,
+                    rowSpacingPx
                 )
             }
         } catch (e: Exception) {
@@ -238,7 +241,9 @@ class AppDrawerAdapter(
             appHideListener: (AppModel, Int) -> Unit,
             appRenameListener: (AppModel, String) -> Unit,
             appFolderListener: (AppModel, View) -> Unit,
+            rowSpacingPx: Int,
         ) = with(binding) {
+            appTitle.setVerticalPadding(rowSpacingPx)
             appHideLayout.visibility = View.GONE
             renameLayout.visibility = View.GONE
             appTitle.visibility = View.VISIBLE

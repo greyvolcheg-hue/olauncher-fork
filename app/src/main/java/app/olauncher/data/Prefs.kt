@@ -35,6 +35,7 @@ class Prefs(context: Context) {
     private val WIDGET_IDS = "WIDGET_IDS"
     private val FONT_FAMILY = "FONT_FAMILY"
     private val FONT_FILE_NAME = "FONT_FILE_NAME"
+    private val ROW_SPACING = "ROW_SPACING"
     private val SHOW_HINT_COUNTER = "SHOW_HINT_COUNTER"
     private val APP_THEME = "APP_THEME"
     private val ABOUT_CLICKED = "ABOUT_CLICKED"
@@ -261,6 +262,11 @@ class Prefs(context: Context) {
     var fontFileName: String
         get() = prefs.getString(FONT_FILE_NAME, "").orEmpty()
         set(value) = prefs.edit { putString(FONT_FILE_NAME, value).apply() }
+
+    // Top and bottom padding of app and folder rows in dp; -1 keeps the layout default
+    var rowSpacingDp: Int
+        get() = prefs.getInt(ROW_SPACING, -1)
+        set(value) = prefs.edit { putInt(ROW_SPACING, value).apply() }
 
     // Home screen widgets in display order
     var widgetIds: List<Int>
