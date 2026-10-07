@@ -143,6 +143,7 @@
     <string name="font_from_file">From file…</string>
     <string name="font_failed">Android cannot read this font</string>
     <string name="line_spacing">Line spacing</string>
+    <string name="widget_spacing">Widget spacing</string>
     <string name="dp_value">%1$d dp</string>
 
     <!-- Fork: links -->

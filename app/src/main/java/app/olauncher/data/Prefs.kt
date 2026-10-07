@@ -32,6 +32,7 @@ class Prefs(context: Context) {
     private val APP_FOLDERS = "APP_FOLDERS"
     private val WIDGET_IDS = "WIDGET_IDS"
     private val WIDGET_ROWS = "WIDGET_ROWS"
+    private val WIDGET_SPACING = "WIDGET_SPACING"
     private val FONT_FAMILY = "FONT_FAMILY"
     private val FONT_FILE_NAME = "FONT_FILE_NAME"
     private val ROW_SPACING = "ROW_SPACING"
@@ -247,6 +248,11 @@ class Prefs(context: Context) {
     var rowSpacingDp: Int
         get() = prefs.getInt(ROW_SPACING, -1)
         set(value) = prefs.edit { putInt(ROW_SPACING, value).apply() }
+
+    // Gap in dp below the date, between widgets and above the home apps
+    var widgetSpacingDp: Int
+        get() = prefs.getInt(WIDGET_SPACING, 16)
+        set(value) = prefs.edit { putInt(WIDGET_SPACING, value).apply() }
 
     // Home screen widgets: rows top to bottom, each row left to right, stored as "1,2;3".
     // Before rows existed WIDGET_IDS held one widget per row.

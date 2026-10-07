@@ -734,16 +734,18 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         ).forEach { it.setVerticalPadding(spacing) }
     }
 
-    // Rows whose views are on screen, so returning home does not rebuild unchanged widgets
-    private var shownWidgetRows: List<List<Int>>? = null
+    // Rows and spacing on screen, so returning home does not rebuild unchanged widgets
+    private var shownWidgetLayout: Pair<List<List<Int>>, Int>? = null
     private var defaultAppsPaddingTop = 0
 
     // Rows share the free height between the date and the home apps equally, and widgets in a row
     // share its width. Each widget is told its real size once laid out, to pick a fitting layout.
     private fun populateWidgets() {
         val rows = prefs.widgetRows
-        if (rows == shownWidgetRows) return
-        shownWidgetRows = rows
+        val layout = rows to prefs.widgetSpacingDp
+        if (layout == shownWidgetLayout) return
+        shownWidgetLayout = layout
+        val gap = prefs.widgetSpacingDp.dpToPx()
 
         val context = requireContext()
         val manager = AppWidgetManager.getInstance(context)
@@ -755,14 +757,15 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             for (appWidgetId in row) {
                 val hostView = createWidgetView(manager, appWidgetId) ?: continue
                 val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
-                if (rowLayout.childCount > 0) params.marginStart = WIDGET_GAP_DP.dpToPx()
+                if (rowLayout.childCount > 0) params.marginStart = gap
                 rowLayout.addView(hostView, params)
             }
             if (rowLayout.childCount == 0) continue
             val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f)
-            if (container.childCount > 0) params.topMargin = WIDGET_GAP_DP.dpToPx()
+            if (container.childCount > 0) params.topMargin = gap
             container.addView(rowLayout, params)
         }
+        (container.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin = gap
         container.isVisible = container.childCount > 0
         placeWidgetsArea()
     }
@@ -771,6 +774,8 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         val info = manager.getAppWidgetInfo(appWidgetId) ?: return null // provider uninstalled
         // Application context: the activity's inflater would put the app font on widget text
         val hostView = Widgets.host(requireContext()).createView(requireContext().applicationContext, appWidgetId, info)
+        // Android pads every widget by 8 dp; Settings > Widget spacing sets all the gaps instead
+        hostView.setPadding(0, 0, 0, 0)
         hostView.addOnLayoutChangeListener { view, left, top, right, bottom, _, _, _, _ ->
             val density = view.resources.displayMetrics.density
             val widthDp = ((right - left) / density).toInt()
@@ -793,7 +798,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         val binding = _binding ?: return
         val apps = binding.homeAppsLayout
         val top = if (binding.widgetsLayout.isVisible && binding.dateTimeLayout.isVisible)
-            dateTimeBottom(binding.dateTimeLayout) + WIDGET_GAP_DP.dpToPx()
+            dateTimeBottom(binding.dateTimeLayout) + prefs.widgetSpacingDp.dpToPx()
         else defaultAppsPaddingTop
         if (apps.paddingTop != top) apps.setPadding(apps.paddingLeft, top, apps.paddingRight, apps.paddingBottom)
     }
@@ -814,12 +819,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
 
     override fun onDestroyView() {
         super.onDestroyView()
-        shownWidgetRows = null
+        shownWidgetLayout = null
         _binding = null
-    }
-
-    companion object {
-        // Below the date and between widgets; fragment_home.xml keeps the same gap above the apps
-        private const val WIDGET_GAP_DP = 16
     }
 }
