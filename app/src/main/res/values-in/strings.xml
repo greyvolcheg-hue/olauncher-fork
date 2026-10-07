@@ -3,9 +3,9 @@
     <string name="app">Aplikasi</string>
     <string name="set_as_default_launcher">Tetapkan sebagai peluncur default</string>
     <string name="set_as_default_launcher_u"><u>Tetapkan sebagai peluncur default</u></string>
-    <string name="set_as_default_launcher_first">Tetapkan Olauncher sebagai default terlebih dahulu</string>
+    <string name="set_as_default_launcher_first">Tetapkan CatLauncher sebagai default terlebih dahulu</string>
     <string name="double_tap_to_lock_screen">Ketuk dua kali untuk mengunci</string>
-    <string name="admin_permission_message">Olauncher berjanji untuk menggunakan izin aksesibilitas secara bertanggung jawab. Olauncher tidak mengumpulkan atau membagikan data apa pun.</string>
+    <string name="admin_permission_message">CatLauncher berjanji untuk menggunakan izin aksesibilitas secara bertanggung jawab. CatLauncher tidak mengumpulkan atau membagikan data apa pun.</string>
     <string name="off">Mati</string>
     <string name="on">Nyala</string>
     <string name="change_default_launcher">Ubah peluncur default</string>
@@ -32,18 +32,17 @@
     <string name="system_default">Sistem</string>
     <string name="dark">Gelap</string>
     <string name="light">Terang</string>
-    <string name="rate_us_message">Hai, Anda tidak akan melihat pesan ini lagi.\n\nJika Olauncher bermanfaat bagi Anda, bisakah Anda memberikan ulasan bintang 5? Itu sangat berarti bagi kami. Terima kasih!</string>
     <string name="app_usage_message">Untuk menampilkan/menyembunyikan waktu layar di layar utama, izinkan atau tolak izin penggunaan aplikasi.
         \n\nCatatan: Tidak ada data penggunaan aplikasi yang dikumpulkan. Semua diproses di perangkat Anda.</string>
-    <string name="accessibility_service_description">Izin aksesibilitas diperlukan untuk mengaktifkan gerakan ketuk dua kali untuk mengunci. Data apa pun yang diperoleh Olauncher melalui layanan ini tidak akan meninggalkan perangkat Anda.</string>
+    <string name="accessibility_service_description">Izin aksesibilitas diperlukan untuk mengaktifkan gerakan ketuk dua kali untuk mengunci. Data apa pun yang diperoleh CatLauncher melalui layanan ini tidak akan meninggalkan perangkat Anda.</string>
     <string name="close">Tutup</string>
     <string name="date">Tanggal</string>
     <string name="date_only">Tanggal saja</string>
     <string name="bottom_on">Bawah: Nyala</string>
     <string name="bottom_off">Bawah: Mati</string>
-    <string name="please_set_olauncher_as_default_first">Silakan atur Olauncher sebagai peluncur default Anda terlebih dahulu</string>
-    <string name="hidden_apps_message">Catatan: Ketuk \'Olauncher\' di bagian atas halaman Pengaturan ini untuk menemukan aplikasi tersembunyi Anda.\n\nRincian lebih lanjut tersedia di halaman Tentang kami.</string>
-    <string name="accessibility_disclosure">Harap aktifkan layanan aksesibilitas Olauncher di pengaturan perangkat Anda untuk mengaktifkan gerakan ketuk dua kali untuk mengunci.\n\nHarap perhatikan bahwa layanan ini hanya digunakan untuk fitur ini saja. Layanan aksesibilitas kami tidak mengumpulkan atau membagikan data apa pun.</string>
+    <string name="please_set_olauncher_as_default_first">Silakan atur CatLauncher sebagai peluncur default Anda terlebih dahulu</string>
+    <string name="hidden_apps_message">Catatan: Ketuk \'CatLauncher\' di bagian atas halaman Pengaturan ini untuk menemukan aplikasi tersembunyi Anda.\n\nRincian lebih lanjut tersedia di halaman Tentang kami.</string>
+    <string name="accessibility_disclosure">Harap aktifkan layanan aksesibilitas CatLauncher di pengaturan perangkat Anda untuk mengaktifkan gerakan ketuk dua kali untuk mengunci.\n\nHarap perhatikan bahwa layanan ini hanya digunakan untuk fitur ini saja. Layanan aksesibilitas kami tidak mengumpulkan atau membagikan data apa pun.</string>
     <string name="permission">Izin</string>
     <string name="home_button_show_recents">Tombol beranda untuk terbaru</string>
     <string name="enable">Aktifkan</string>
@@ -54,7 +53,7 @@
     <string name="text_size">Ukuran teks</string>
     <string name="enabled">Diaktifkan</string>
     <string name="please_turn_on_double_tap_to_unlock">Harap aktifkan ketuk dua kali untuk mengunci</string>
-    <string name="launcher_failed_to_lock_device">Olauncher gagal mengunci perangkat.\nSilakan periksa pengaturan aplikasi Anda.</string>
+    <string name="launcher_failed_to_lock_device">CatLauncher gagal mengunci perangkat.\nSilakan periksa pengaturan aplikasi Anda.</string>
     <string name="long_press_to_select_app">Tekan lama untuk memilih aplikasi</string>
     <string name="unable_to_open_app">Tidak dapat membuka aplikasi</string>
     <string name="system_app_cannot_delete">Aplikasi sistem, tidak dapat di-uninstal</string>
@@ -65,7 +64,7 @@
     <string name="swipe_left_app_disabled">Aplikasi geser ke kiri dinonaktifkan</string>
     <string name="swipe_right_app_disabled">Aplikasi geser ke kanan dinonaktifkan</string>
     <string name="your_wallpaper_will_update_shortly">Wallpaper Anda akan segera diperbarui</string>
-    <string name="olauncher_is_not_default_launcher">Olauncher bukan peluncur default.\nPembaruan wallpaper harian mungkin gagal.</string>
+    <string name="olauncher_is_not_default_launcher">CatLauncher bukan peluncur default.\nPembaruan wallpaper harian mungkin gagal.</string>
     <string name="long_press_to_enable">Tekan lama untuk mengaktifkan</string>
     <string name="no_hidden_apps">Aplikasi tersembunyi tidak ada</string>
     <string name="hidden_apps">Aplikasi tersembunyi</string>

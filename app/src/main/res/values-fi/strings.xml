@@ -2,10 +2,10 @@
     <string name="app">Sovellus</string>
     <string name="set_as_default_launcher">Aseta oletuskäynnistimeksi</string>
     <string name="set_as_default_launcher_u"><u>Aseta oletuskäynnistimeksi</u></string>
-    <string name="set_as_default_launcher_first">Aseta ensin Olauncher oletukseksi</string>
+    <string name="set_as_default_launcher_first">Aseta ensin CatLauncher oletukseksi</string>
     <string name="double_tap_to_lock_screen">Lukitse kaksoisnapautuksella</string>
     <string name="home_button_show_recents">Koti-painike viimeisimmille sovelluksille</string>
-    <string name="admin_permission_message">Olauncher lupaa käyttää esteettömyysoikeutta vastuullisesti. Olauncher ei kerää tai jaa mitään tietoja.</string>
+    <string name="admin_permission_message">CatLauncher lupaa käyttää esteettömyysoikeutta vastuullisesti. CatLauncher ei kerää tai jaa mitään tietoja.</string>
     <string name="off">Pois</string>
     <string name="on">Päällä</string>
     <string name="change_default_launcher">Vaihda oletuskäynnistintä</string>
@@ -31,19 +31,17 @@
     <string name="system_default">Järjestelmä</string>
     <string name="dark">Tumma</string>
     <string name="light">Vaalea</string>
-    <string name="rate_us_message">Hei, et näe tätä viestiä enää uudelleen.
-        \n\nJos Olauncher on ollut sinulle hyödyllinen, voisitko jättää 5 tähden arvostelun? Se merkitsisi meille paljon. Kiitos!</string>
     <string name="app_usage_message">Näyttääksesi/piilottaaksesi ruutuajan aloitusnäytöllä, salli tai kiellä sovellusten käyttöoikeus.
         \n\nHuomio: Sovellusten käyttötietoja ei kerätä. Kaikki käsitellään laitteellasi.</string>
-    <string name="accessibility_service_description">Esteettömyysoikeus vaaditaan Lukitse kaksoisnapautuksella -eleen käyttöönottoon. Mitään Olauncherin tämän palvelun kautta hankkimaa tietoa ei lähetetä laitteestasi pois.</string>
+    <string name="accessibility_service_description">Esteettömyysoikeus vaaditaan Lukitse kaksoisnapautuksella -eleen käyttöönottoon. Mitään CatLauncherin tämän palvelun kautta hankkimaa tietoa ei lähetetä laitteestasi pois.</string>
     <string name="close">Sulje</string>
     <string name="date">Päivämäärä</string>
     <string name="date_only">Vain päivämäärä</string>
     <string name="bottom_on">Alaosa: Päällä</string>
     <string name="bottom_off">Alaosa: Pois</string>
-    <string name="please_set_olauncher_as_default_first">Aseta ensin Olauncher oletukseksi</string>
-    <string name="hidden_apps_message">Huomio: Napauta \'Olauncher\' tämän asetussivun yläreunassa löytääksesi piilotetut sovelluksesi.\n\nLisätietoja Tietoja-sivulla.</string>
-    <string name="accessibility_disclosure">Ota Olauncherin esteettömyyspalvelu käyttöön laitteesi asetuksista, jotta voit ottaa käyttöön Lukitse kaksoisnapautuksella -eleen.\n\nHuomaa, että tätä palvelua käytetään vain tähän tiettyyn ominaisuuteen. Esteettömyyspalvelumme ei kerää tai jaa mitään tietoja.</string>
+    <string name="please_set_olauncher_as_default_first">Aseta ensin CatLauncher oletukseksi</string>
+    <string name="hidden_apps_message">Huomio: Napauta \'CatLauncher\' tämän asetussivun yläreunassa löytääksesi piilotetut sovelluksesi.\n\nLisätietoja Tietoja-sivulla.</string>
+    <string name="accessibility_disclosure">Ota CatLauncherin esteettömyyspalvelu käyttöön laitteesi asetuksista, jotta voit ottaa käyttöön Lukitse kaksoisnapautuksella -eleen.\n\nHuomaa, että tätä palvelua käytetään vain tähän tiettyyn ominaisuuteen. Esteettömyyspalvelumme ei kerää tai jaa mitään tietoja.</string>
     <string name="permission">Käyttöoikeus</string>
     <string name="enable">Ota käyttöön</string>
     <string name="disable">Poista käytöstä</string>
@@ -53,7 +51,7 @@
     <string name="text_size">Tekstin koko</string>
     <string name="enabled">Käytössä</string>
     <string name="please_turn_on_double_tap_to_unlock">Ota käyttöön lukitus kaksoisnapautuksella</string>
-    <string name="launcher_failed_to_lock_device">Olauncher ei pystynyt lukitsemaan laitetta.\nTarkista sovelluksen asetukset.</string>
+    <string name="launcher_failed_to_lock_device">CatLauncher ei pystynyt lukitsemaan laitetta.\nTarkista sovelluksen asetukset.</string>
     <string name="long_press_to_select_app">Pitkä painallus valitaksesi sovelluksen</string>
     <string name="unable_to_open_app">Sovellusta ei voida avata</string>
     <string name="unable_to_open_app_info">Sovelluksen tietoja ei voida avata</string>
@@ -65,7 +63,7 @@
     <string name="swipe_left_app_disabled">Sovellus vasemmalle pyyhkäisyllä poistettu käytöstä</string>
     <string name="swipe_right_app_disabled">Sovellus oikealle pyyhkäisyllä poistettu käytöstä</string>
     <string name="your_wallpaper_will_update_shortly">Taustakuvasi päivittyy pian</string>
-    <string name="olauncher_is_not_default_launcher">Olauncher ei ole oletuksena. Taustakuvan päivitys epäonnistuu.</string>
+    <string name="olauncher_is_not_default_launcher">CatLauncher ei ole oletuksena. Taustakuvan päivitys epäonnistuu.</string>
     <string name="long_press_to_enable">Pitkä painallus ottaaksesi käyttöön</string>
     <string name="no_hidden_apps">Ei piilotettuja sovelluksia</string>
     <string name="hidden_apps">Piilotetut sovellukset</string>

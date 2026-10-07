@@ -122,7 +122,12 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
 
             R.id.widgetSpacingValue -> showDpStepperDialog(R.string.widget_spacing, { prefs.widgetSpacingDp }, MAX_WIDGET_SPACING_DP) {
                 prefs.widgetSpacingDp = it
-                populateWidgetSpacing()
+                populateWidgetGaps()
+            }
+
+            R.id.widgetEdgeValue -> showDpStepperDialog(R.string.widget_edge, { prefs.widgetEdgeDp }, MAX_WIDGET_EDGE_DP) {
+                prefs.widgetEdgeDp = it
+                populateWidgetGaps()
             }
 
             R.id.swipeLeftApp -> showAppListIfEnabled(Constants.FLAG_SET_SWIPE_LEFT_APP)
@@ -176,6 +181,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.fontValue.setOnClickListener(this)
         binding.lineSpacingValue.setOnClickListener(this)
         binding.widgetSpacingValue.setOnClickListener(this)
+        binding.widgetEdgeValue.setOnClickListener(this)
 
         binding.footer.setOnClickListener(this)
 
@@ -581,7 +587,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.boldFont.text = getString(if (prefs.boldFont) R.string.on else R.string.off)
         populateFont()
         populateLineSpacing()
-        populateWidgetSpacing()
+        populateWidgetGaps()
     }
 
     // Shown in dp; unset means the layout default, which differs by screen density
@@ -592,8 +598,9 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.lineSpacingValue.text = getString(R.string.dp_value, currentLineSpacingDp())
     }
 
-    private fun populateWidgetSpacing() {
+    private fun populateWidgetGaps() {
         binding.widgetSpacingValue.text = getString(R.string.dp_value, prefs.widgetSpacingDp)
+        binding.widgetEdgeValue.text = getString(R.string.dp_value, prefs.widgetEdgeDp)
     }
 
     // −/+ stepper in dp on the text size dialog's layout; each step is saved at once
@@ -758,5 +765,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         private const val SPACING_STEP_DP = 2
         private const val MAX_LINE_SPACING_DP = 32
         private const val MAX_WIDGET_SPACING_DP = 32
+        private const val MAX_WIDGET_EDGE_DP = 48
     }
 }

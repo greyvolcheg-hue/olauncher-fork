@@ -33,6 +33,7 @@ class Prefs(context: Context) {
     private val WIDGET_IDS = "WIDGET_IDS"
     private val WIDGET_ROWS = "WIDGET_ROWS"
     private val WIDGET_SPACING = "WIDGET_SPACING"
+    private val WIDGET_EDGE = "WIDGET_EDGE"
     private val FONT_FAMILY = "FONT_FAMILY"
     private val FONT_FILE_NAME = "FONT_FILE_NAME"
     private val ROW_SPACING = "ROW_SPACING"
@@ -253,6 +254,11 @@ class Prefs(context: Context) {
     var widgetSpacingDp: Int
         get() = prefs.getInt(WIDGET_SPACING, 16)
         set(value) = prefs.edit { putInt(WIDGET_SPACING, value).apply() }
+
+    // Gap in dp between the widgets and the left and right screen edges
+    var widgetEdgeDp: Int
+        get() = prefs.getInt(WIDGET_EDGE, 24)
+        set(value) = prefs.edit { putInt(WIDGET_EDGE, value).apply() }
 
     // Home screen widgets: rows top to bottom, each row left to right, stored as "1,2;3".
     // Before rows existed WIDGET_IDS held one widget per row.

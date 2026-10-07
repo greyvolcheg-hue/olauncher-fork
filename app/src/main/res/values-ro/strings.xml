@@ -2,10 +2,10 @@
     <string name="app">Aplicație</string>
     <string name="set_as_default_launcher">Setează ca launcher implicit</string>
     <string name="set_as_default_launcher_u"><u>Setează ca launcher implicit</u></string>
-    <string name="set_as_default_launcher_first">Setează mai întâi Olauncher ca implicit</string>
+    <string name="set_as_default_launcher_first">Setează mai întâi CatLauncher ca implicit</string>
     <string name="double_tap_to_lock_screen">Atinge dublu pentru blocare</string>
     <string name="home_button_show_recents">Buton Acasă pentru aplicații recente</string>
-    <string name="admin_permission_message">Olauncher promite să folosească responsabil permisiunea de accesibilitate. Olauncher nu colectează și nu partajează date.</string>
+    <string name="admin_permission_message">CatLauncher promite să folosească responsabil permisiunea de accesibilitate. CatLauncher nu colectează și nu partajează date.</string>
     <string name="off">Dezactivat</string>
     <string name="on">Activat</string>
     <string name="change_default_launcher">Schimbă launcherul implicit</string>
@@ -31,19 +31,17 @@
     <string name="system_default">Sistem</string>
     <string name="dark">Întunecat</string>
     <string name="light">Luminos</string>
-    <string name="rate_us_message">Salut, nu vei mai vedea acest mesaj din nou.
-        \n\nDacă găsești Olauncher util, ai putea să ne lași o recenzie de 5 stele? Ar însemna enorm pentru noi. Mulțumim!</string>
     <string name="app_usage_message">Pentru a afișa/ascunde timpul petrecut pe ecran de pe ecranul de start, permite sau refuză permisiunea de utilizare a aplicațiilor.
         \n\nNotă: Nu se colectează date privind utilizarea aplicațiilor. Totul este procesat pe dispozitivul tău.</string>
-    <string name="accessibility_service_description">Permisiunea de accesibilitate este necesară pentru a activa gestul - atinge dublu pentru blocare. Niciun fel de date obținute de Olauncher prin acest serviciu nu părăsesc dispozitivul tău.</string>
+    <string name="accessibility_service_description">Permisiunea de accesibilitate este necesară pentru a activa gestul - atinge dublu pentru blocare. Niciun fel de date obținute de CatLauncher prin acest serviciu nu părăsesc dispozitivul tău.</string>
     <string name="close">Închide</string>
     <string name="date">Dată</string>
     <string name="date_only">Doar data</string>
     <string name="bottom_on">Jos: Activat</string>
     <string name="bottom_off">Jos: Dezactivat</string>
-    <string name="please_set_olauncher_as_default_first">Te rugăm să setezi mai întâi Olauncher ca implicit</string>
-    <string name="hidden_apps_message">Notă: Atinge \'Olauncher\' în partea de sus a acestei pagini de setări pentru a găsi aplicațiile tale ascunse.\n\nMai multe detalii sunt disponibile pe pagina noastră Despre.</string>
-    <string name="accessibility_disclosure">Te rugăm să activezi serviciul de accesibilitate Olauncher din setările dispozitivului pentru a activa gestul Atinge dublu pentru blocare.
+    <string name="please_set_olauncher_as_default_first">Te rugăm să setezi mai întâi CatLauncher ca implicit</string>
+    <string name="hidden_apps_message">Notă: Atinge \'CatLauncher\' în partea de sus a acestei pagini de setări pentru a găsi aplicațiile tale ascunse.\n\nMai multe detalii sunt disponibile pe pagina noastră Despre.</string>
+    <string name="accessibility_disclosure">Te rugăm să activezi serviciul de accesibilitate CatLauncher din setările dispozitivului pentru a activa gestul Atinge dublu pentru blocare.
     \n\nTe rugăm să reții că acest serviciu este utilizat doar pentru această funcție specifică. Serviciul nostru de accesibilitate nu colectează și nu partajează date.</string>
     <string name="permission">Permisiune</string>
     <string name="enable">Activează</string>
@@ -54,7 +52,7 @@
     <string name="text_size">Dimensiune text</string>
     <string name="enabled">Activat</string>
     <string name="please_turn_on_double_tap_to_unlock">Te rugăm să activezi atinge dublu pentru blocare</string>
-    <string name="launcher_failed_to_lock_device">Olauncher nu a reușit să blocheze dispozitivul.\nTe rugăm să verifici setările aplicației.</string>
+    <string name="launcher_failed_to_lock_device">CatLauncher nu a reușit să blocheze dispozitivul.\nTe rugăm să verifici setările aplicației.</string>
     <string name="long_press_to_select_app">Apasă lung pentru a selecta aplicația</string>
     <string name="unable_to_open_app">Nu se poate deschide aplicația</string>
     <string name="unable_to_open_app_info">Nu se pot deschide informațiile aplicației</string>
@@ -66,7 +64,7 @@
     <string name="swipe_left_app_disabled">Aplicație la glisare stânga dezactivată</string>
     <string name="swipe_right_app_disabled">Aplicație la glisare dreapta dezactivată</string>
     <string name="your_wallpaper_will_update_shortly">Fundalul tău se va actualiza în curând</string>
-    <string name="olauncher_is_not_default_launcher">Olauncher nu este implicit. Actualizarea fundalului va eșua.</string>
+    <string name="olauncher_is_not_default_launcher">CatLauncher nu este implicit. Actualizarea fundalului va eșua.</string>
     <string name="long_press_to_enable">Apasă lung pentru a activa</string>
     <string name="no_hidden_apps">Nicio aplicație ascunsă</string>
     <string name="hidden_apps">Aplicații ascunse</string>

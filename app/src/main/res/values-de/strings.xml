@@ -3,16 +3,16 @@
     <string name="app">App</string>
     <string name="set_as_default_launcher">Als Standard-Launcher festlegen</string>
     <string name="set_as_default_launcher_u"><u>Als Standard-Launcher festlegen</u></string>
-    <string name="set_as_default_launcher_first">Legen Sie zuerst Olauncher als Standard fest</string>
+    <string name="set_as_default_launcher_first">Legen Sie zuerst CatLauncher als Standard fest</string>
     <string name="_8">8</string>
     <string name="okay">Okay</string>
     <string name="your_wallpaper_will_update_shortly">Ihr Hintergrundbild wird in Kürze aktualisiert</string>
-    <string name="olauncher_is_not_default_launcher">Olauncher ist kein Standard-Launcher. Die tägliche Aktualisierung des Hintergrundbilds schlägt möglicherweise fehl.</string>
+    <string name="olauncher_is_not_default_launcher">CatLauncher ist kein Standard-Launcher. Die tägliche Aktualisierung des Hintergrundbilds schlägt möglicherweise fehl.</string>
     <string name="long_press_to_enable">Zum Aktivieren lange drücken</string>
     <string name="no_hidden_apps">Keine versteckten Apps</string>
     <string name="hidden_apps">Versteckte Apps</string>
-    <string name="hidden_apps_message">Hinweis: Tippen Sie oben auf dieser Einstellungsseite auf „Olauncher“, um Ihre versteckten Apps zu finden.\n\nWeitere Einzelheiten finden Sie auf unserer Seite „Über“.</string>
-    <string name="accessibility_disclosure">Bitte aktivieren Sie den Bedienungshilfen-Dienst von Olauncher in den Einstellungen Ihres Geräts, um die Geste „Doppeltippen zum Sperren“ zu aktivieren.\n\nBitte beachten Sie, dass dieser Dienst nur für diese eine Funktion verwendet wird. Unser Bedienungshilfen-Dienst sammelt oder teilt keine Daten.</string>
+    <string name="hidden_apps_message">Hinweis: Tippen Sie oben auf dieser Einstellungsseite auf „CatLauncher“, um Ihre versteckten Apps zu finden.\n\nWeitere Einzelheiten finden Sie auf unserer Seite „Über“.</string>
+    <string name="accessibility_disclosure">Bitte aktivieren Sie den Bedienungshilfen-Dienst von CatLauncher in den Einstellungen Ihres Geräts, um die Geste „Doppeltippen zum Sperren“ zu aktivieren.\n\nBitte beachten Sie, dass dieser Dienst nur für diese eine Funktion verwendet wird. Unser Bedienungshilfen-Dienst sammelt oder teilt keine Daten.</string>
     <string name="permission">Erlaubnis</string>
     <string name="home_button_show_recents">Home-Taste für letzte Apps</string>
     <string name="enable">Aktivieren</string>
@@ -23,7 +23,7 @@
     <string name="text_size">Textgröße</string>
     <string name="enabled">Aktiviert</string>
     <string name="please_turn_on_double_tap_to_unlock">Zum Sperren bitte Doppeltippen aktivieren</string>
-    <string name="launcher_failed_to_lock_device">Olauncher konnte das Gerät nicht sperren. Bitte überprüfen Sie Ihre App-Einstellungen.</string>
+    <string name="launcher_failed_to_lock_device">CatLauncher konnte das Gerät nicht sperren. Bitte überprüfen Sie Ihre App-Einstellungen.</string>
     <string name="long_press_to_select_app">Lange drücken, um die App auszuwählen</string>
     <string name="unable_to_open_app">App kann nicht geöffnet werden</string>
     <string name="system_app_cannot_delete">System-App, kann nicht deinstalliert werden</string>
@@ -31,7 +31,7 @@
     <string name="adapter_show">Anzeigen</string>
     <string name="adapter_hide">Ausblenden</string>
     <string name="double_tap_to_lock_screen">Zum Sperren zweimal tippen</string>
-    <string name="admin_permission_message">Olauncher verspricht, verantwortungsvoll mit der Berechtigung für Bedienungshilfen umzugehen. Olauncher sammelt keine Daten und gibt keine weiter.</string>
+    <string name="admin_permission_message">CatLauncher verspricht, verantwortungsvoll mit der Berechtigung für Bedienungshilfen umzugehen. CatLauncher sammelt keine Daten und gibt keine weiter.</string>
     <string name="off">Aus</string>
     <string name="on">Ein</string>
     <string name="change_default_launcher">Standard-Launcher ändern</string>
@@ -56,16 +56,15 @@
     <string name="system_default">System</string>
     <string name="dark">Dunkel</string>
     <string name="light">Hell</string>
-    <string name="rate_us_message">Hallo, diese Nachricht wird Ihnen nicht mehr angezeigt.\n\nWenn Sie Olauncher nützlich finden, könnten Sie uns bitte eine 5-Sterne-Bewertung hinterlassen? Es würde uns sehr viel bedeuten. Danke!</string>
     <string name="app_usage_message">Um die Bildschirmzeit auf dem Startbildschirm anzuzeigen oder zu verbergen, erteilen Sie bitte die Erlaubnis für die App-Nutzung oder verweigern Sie sie.
         \n\nHinweis: Es werden keine Daten zur App-Nutzung gesammelt. Alles wird auf Ihrem Gerät verarbeitet.</string>
-    <string name="accessibility_service_description">Die Berechtigung für Bedienungshilfen ist erforderlich, um die Geste „Doppeltippen zum Sperren“ zu aktivieren. Daten, die Olauncher über diesen Dienst erhält, verlassen Ihr Gerät nicht.</string>
+    <string name="accessibility_service_description">Die Berechtigung für Bedienungshilfen ist erforderlich, um die Geste „Doppeltippen zum Sperren“ zu aktivieren. Daten, die CatLauncher über diesen Dienst erhält, verlassen Ihr Gerät nicht.</string>
     <string name="close">Schließen</string>
     <string name="date">Datum</string>
     <string name="date_only">Nur Datum</string>
     <string name="bottom_on">Unten: Ein</string>
     <string name="bottom_off">Unten: Aus</string>
-    <string name="please_set_olauncher_as_default_first">Bitte legen Sie zunächst Olauncher als Ihren Standard-Launcher fest</string>
+    <string name="please_set_olauncher_as_default_first">Bitte legen Sie zunächst CatLauncher als Ihren Standard-Launcher fest</string>
     <string name="app_not_found">App nicht gefunden</string>
     <string name="swipe_left_app_enabled">App nach links wischen aktiviert</string>
     <string name="swipe_right_app_enabled">App nach rechts wischen aktiviert</string>
