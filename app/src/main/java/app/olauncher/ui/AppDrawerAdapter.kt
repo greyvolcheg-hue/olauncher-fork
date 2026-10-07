@@ -35,6 +35,7 @@ class AppDrawerAdapter(
     private val appRenameListener: (AppModel, String) -> Unit,
     private val privateSpaceToggleListener: () -> Unit = {},
     private val privateSpaceSettingsListener: () -> Unit = {},
+    private val appFolderListener: (AppModel, View) -> Unit = { _, _ -> },
 ) : ListAdapter<AppModel, RecyclerView.ViewHolder>(DIFF_CALLBACK), Filterable {
 
     companion object {
@@ -119,7 +120,8 @@ class AppDrawerAdapter(
                     appDeleteListener,
                     appInfoListener,
                     appHideListener,
-                    appRenameListener
+                    appRenameListener,
+                    appFolderListener
                 )
             }
         } catch (e: Exception) {
@@ -233,6 +235,7 @@ class AppDrawerAdapter(
             appInfoListener: (AppModel) -> Unit,
             appHideListener: (AppModel, Int) -> Unit,
             appRenameListener: (AppModel, String) -> Unit,
+            appFolderListener: (AppModel, View) -> Unit,
         ) = with(binding) {
             appHideLayout.visibility = View.GONE
             renameLayout.visibility = View.GONE
@@ -268,6 +271,8 @@ class AppDrawerAdapter(
                     appHideLayout.visibility = View.VISIBLE
                     // Only allow renaming non hidden apps
                     appRename.isVisible = flag != Constants.FLAG_HIDDEN_APPS
+                    // Folders exist only in the main drawer
+                    appFolder.isVisible = flag == Constants.FLAG_LAUNCH_APP
                 }
                 true
             }
@@ -340,6 +345,11 @@ class AppDrawerAdapter(
                 appTitle.visibility = View.VISIBLE
             }
             appHide.setOnClickListener { appHideListener(appModel, bindingAdapterPosition) }
+            appFolder.setOnClickListener {
+                appHideLayout.visibility = View.GONE
+                appTitle.visibility = View.VISIBLE
+                appFolderListener(appModel, root)
+            }
         }
 
         private fun getAppName(context: Context, appPackage: String, user: UserHandle): String {
