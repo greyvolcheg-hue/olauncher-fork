@@ -71,8 +71,10 @@ class AppDrawerAdapter(
     var appsList: MutableList<AppModel> = mutableListOf()
     var appFilteredList: MutableList<AppModel> = mutableListOf()
 
+    // Views read currentList, the list on screen. appFilteredList already holds the next list while
+    // its diff is computed, and binding from it in that window drew labels over each other.
     override fun getItemViewType(position: Int): Int {
-        return when (appFilteredList.getOrNull(position)) {
+        return when (currentList.getOrNull(position)) {
             is AppModel.PrivateSpaceHeader -> VIEW_TYPE_PRIVATE_HEADER
             else -> VIEW_TYPE_APP
         }
@@ -100,8 +102,8 @@ class AppDrawerAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         try {
-            if (appFilteredList.isEmpty() || position == RecyclerView.NO_POSITION) return
-            val appModel = appFilteredList[holder.bindingAdapterPosition]
+            if (position == RecyclerView.NO_POSITION) return
+            val appModel = currentList.getOrNull(holder.bindingAdapterPosition) ?: return
             when (holder) {
                 is PrivateSpaceHeaderViewHolder -> {
                     holder.bind(

@@ -189,6 +189,8 @@
     <string name="import_folders_result">%1$d apps put in folders, %2$d names not found</string>
     <string name="import_folders_failed">Could not read the file</string>
 
+    <string name="search">Search</string>
+
     <!-- Widgets (fork) -->
     <string name="widgets">Widgets</string>
     <string name="add_widget">Add widget</string>

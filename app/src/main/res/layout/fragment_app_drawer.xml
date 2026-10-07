@@ -37,6 +37,19 @@
             app:searchIcon="@null"
             app:theme="@style/AppSearchText" />
 
+        <!-- Main drawer only: the search field's text acts as back, this starts a search -->
+        <ImageView
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="20dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/search"
+            android:padding="8dp"
+            android:src="@drawable/ic_search"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/appRename"
             style="@style/TextSmall"
