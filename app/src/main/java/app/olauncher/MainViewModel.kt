@@ -5,6 +5,8 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.LauncherApps
+import android.net.Uri
+import android.widget.Toast
 import android.os.Build
 import android.os.UserHandle
 import android.os.UserManager
@@ -19,6 +21,7 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import app.olauncher.data.AppModel
 import app.olauncher.data.Constants
+import app.olauncher.data.Folders
 import app.olauncher.data.Prefs
 import app.olauncher.helper.SingleLiveEvent
 import app.olauncher.helper.WallpaperWorker
@@ -32,7 +35,9 @@ import app.olauncher.helper.isPackageInstalled
 import app.olauncher.helper.isPrivateSpaceLocked
 import app.olauncher.helper.showToast
 import app.olauncher.helper.usageStats.EventLogWrapper
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
@@ -62,6 +67,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val showDialog = SingleLiveEvent<String>()
     val checkForMessages = SingleLiveEvent<Unit?>()
     val resetLauncherLiveData = SingleLiveEvent<Unit?>()
+    val pickFoldersFile = SingleLiveEvent<Unit?>()
     // Home button for recents feature disabled
     // val showRecentApps = SingleLiveEvent<Unit?>()
 
@@ -400,6 +406,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             appList.value = apps
         }
         getPrivateSpaceAppList()
+    }
+
+    fun importFolders(uri: Uri) {
+        viewModelScope.launch {
+            val message = try {
+                val csv = withContext(Dispatchers.IO) {
+                    appContext.contentResolver.openInputStream(uri)?.bufferedReader()?.use { it.readText() }
+                } ?: throw IllegalStateException("Empty stream")
+                val apps = getAppsList(appContext, prefs, includeRegularApps = true, includeHiddenApps = true)
+                val result = Folders.importCsv(prefs, csv, apps)
+                appContext.getString(R.string.import_folders_result, result.assigned, result.notFound)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                appContext.getString(R.string.import_folders_failed)
+            }
+            appContext.showToast(message, Toast.LENGTH_LONG)
+        }
     }
 
     fun getHiddenApps() {

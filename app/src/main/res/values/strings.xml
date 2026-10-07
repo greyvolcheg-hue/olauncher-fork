@@ -173,4 +173,19 @@
     <string name="invalid_shortcut">Invalid shortcut</string>
     <string name="shortcut_not_found">Shortcut not found</string>
     <string name="unable_to_open_shortcut">Unable to open shortcut</string>
+
+    <!-- Folders (fork) -->
+    <string name="folder">Folder</string>
+    <string name="new_folder">New folder</string>
+    <string name="no_folder">Remove from folder</string>
+    <string name="rename_folder">Rename folder</string>
+    <string name="delete_folder">Delete folder</string>
+    <string name="delete_folder_message">Its apps move to Uncategorised.</string>
+    <string name="folder_name">Folder name</string>
+    <string name="folder_name_taken">Name is empty or taken</string>
+    <string name="uncategorised">Uncategorised</string>
+    <string name="create">Create</string>
+    <string name="import_folders">Import folders from CSV</string>
+    <string name="import_folders_result">%1$d apps put in folders, %2$d names not found</string>
+    <string name="import_folders_failed">Could not read the file</string>
 </resources>

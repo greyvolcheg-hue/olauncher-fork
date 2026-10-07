@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatEditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/etFolderName"
+    style="@style/TextLarge"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:background="@null"
+    android:hint="@string/folder_name"
+    android:imeOptions="actionDone"
+    android:inputType="textCapSentences"
+    android:maxLength="30"
+    android:maxLines="1"
+    android:paddingVertical="12dp"
+    android:textColorHint="?attr/primaryColorTrans50" />

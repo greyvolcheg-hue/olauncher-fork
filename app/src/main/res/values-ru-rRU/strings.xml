@@ -144,4 +144,19 @@
     <string name="unable_to_open_shortcut">Не удалось открыть ярлык</string>
     <string name="unable_to_open_app_info">Не удалось открыть информацию о приложении</string>
     <string name="bold_font">Жирный шрифт</string>
+
+    <!-- Folders (fork) -->
+    <string name="folder">Папка</string>
+    <string name="new_folder">Новая папка</string>
+    <string name="no_folder">Убрать из папки</string>
+    <string name="rename_folder">Переименовать папку</string>
+    <string name="delete_folder">Удалить папку</string>
+    <string name="delete_folder_message">Её приложения перейдут в «Без папки».</string>
+    <string name="folder_name">Название папки</string>
+    <string name="folder_name_taken">Название пустое или занято</string>
+    <string name="uncategorised">Без папки</string>
+    <string name="create">Создать</string>
+    <string name="import_folders">Импорт папок из CSV</string>
+    <string name="import_folders_result">Разложено по папкам: %1$d, не найдено названий: %2$d</string>
+    <string name="import_folders_failed">Не удалось прочитать файл</string>
 </resources><!-- Russian -->
