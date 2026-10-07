@@ -759,11 +759,16 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             val info = manager.getAppWidgetInfo(appWidgetId) ?: continue // provider uninstalled
             // Application context: the activity's inflater would put the app font on widget text
             val hostView = host.createView(context.applicationContext, appWidgetId, info)
-            hostView.addOnLayoutChangeListener { view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
-                if (right - left == oldRight - oldLeft && bottom - top == oldBottom - oldTop) return@addOnLayoutChangeListener
+            hostView.addOnLayoutChangeListener { view, left, top, right, bottom, _, _, _, _ ->
                 val density = view.resources.displayMetrics.density
                 val widthDp = ((right - left) / density).toInt()
                 val heightDp = ((bottom - top) / density).toInt()
+                // The system keeps the last size sent; resending it would make the widget redraw
+                // every time the home screen is rebuilt
+                val options = manager.getAppWidgetOptions(appWidgetId)
+                if (options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH) == widthDp &&
+                    options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT) == heightDp
+                ) return@addOnLayoutChangeListener
                 @Suppress("DEPRECATION")
                 view.post { hostView.updateAppWidgetSize(Bundle(), widthDp, heightDp, widthDp, heightDp) }
             }
@@ -781,9 +786,24 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         val binding = _binding ?: return
         val apps = binding.homeAppsLayout
         val top = if (binding.widgetsLayout.isVisible && binding.dateTimeLayout.isVisible)
-            binding.dateTimeLayout.bottom + 16.dpToPx()
+            dateTimeBottom(binding.dateTimeLayout) + 16.dpToPx()
         else defaultAppsPaddingTop
         if (apps.paddingTop != top) apps.setPadding(apps.paddingLeft, top, apps.paddingRight, apps.paddingBottom)
+    }
+
+    // Returning from the app drawer rebuilds this view, and onResume runs before its first layout.
+    // Measuring the date then gives the first frame the final split; reading bottom would give 0
+    // and stretch the widgets to the top of the screen for a frame.
+    private fun dateTimeBottom(dateTime: View): Int {
+        if (dateTime.isLaidOut) return dateTime.bottom
+        val params = dateTime.layoutParams as ViewGroup.MarginLayoutParams
+        val width = (binding.root.width.takeIf { it > 0 } ?: resources.displayMetrics.widthPixels) -
+            params.leftMargin - params.rightMargin
+        dateTime.measure(
+            View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
+        return params.topMargin + dateTime.measuredHeight
     }
 
     override fun onDestroyView() {
