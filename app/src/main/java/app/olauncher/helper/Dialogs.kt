@@ -8,13 +8,16 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isVisible
+import app.olauncher.R
 import app.olauncher.data.Prefs
 import app.olauncher.databinding.DialogBaseBinding
+import app.olauncher.databinding.DialogListBinding
 
 /**
  * Shows a popup menu hanging off the end edge of this view.
@@ -116,5 +119,43 @@ fun Context.showMessageDialog(
 ): OlDialog {
     val dialog = createDialog(title, action, message = message, onAction = onAction)
     dialog.showRespectingStatusBar()
+    return dialog
+}
+
+/**
+ * Dialog with a scrollable list of text rows. Tapping a row closes the dialog and calls [onPick]
+ * with its index. The list takes at most 55% of the screen height so the action stays visible.
+ */
+fun Context.createListDialog(
+    @StringRes title: Int,
+    items: List<String>,
+    @StringRes action: Int,
+    @StringRes message: Int = 0,
+    onAction: () -> Unit = {},
+    onPick: (Int) -> Unit,
+): OlDialog {
+    var list: DialogListBinding? = null
+    val dialog = createDialog(title, action, message = message, onAction = onAction) { container ->
+        DialogListBinding.inflate(LayoutInflater.from(container.context), container, false).also { list = it }.root
+    }
+    list?.apply {
+        val inflater = LayoutInflater.from(root.context)
+        items.forEachIndexed { index, label ->
+            val row = inflater.inflate(R.layout.dialog_list_item, listContainer, false) as TextView
+            row.text = label
+            row.setOnClickListener {
+                dialog.dismiss()
+                onPick(index)
+            }
+            listContainer.addView(row)
+        }
+        val maxHeight = (resources.displayMetrics.heightPixels * 0.55f).toInt()
+        root.measure(
+            View.MeasureSpec.makeMeasureSpec(resources.displayMetrics.widthPixels, View.MeasureSpec.AT_MOST),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
+        if (root.measuredHeight > maxHeight) root.layoutParams.height = maxHeight
+        root.isVisible = items.isNotEmpty()
+    }
     return dialog
 }

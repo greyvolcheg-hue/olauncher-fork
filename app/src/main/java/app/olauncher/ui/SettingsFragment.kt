@@ -27,6 +27,7 @@ import app.olauncher.databinding.DialogTextSizeBinding
 import app.olauncher.databinding.FragmentSettingsBinding
 import app.olauncher.helper.appUsagePermissionGranted
 import app.olauncher.helper.createDialog
+import app.olauncher.helper.createListDialog
 import app.olauncher.helper.getColorFromAttr
 import app.olauncher.helper.hideStatusBar
 import app.olauncher.helper.isAccessServiceEnabled
@@ -39,6 +40,7 @@ import app.olauncher.helper.openUrl
 import app.olauncher.helper.rateApp
 import app.olauncher.helper.setPlainWallpaper
 import app.olauncher.helper.shareApp
+import app.olauncher.helper.Fonts
 import app.olauncher.helper.OlDialog
 import app.olauncher.helper.Widgets
 import app.olauncher.helper.showPopupMenu
@@ -76,7 +78,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         checkAdminPermission()
 
         binding.homeAppsNum.text = prefs.homeAppsNum.toString()
-        populateProMessage()
         populateKeyboardText()
         populateScreenTimeOnOff()
         populateLockSettings()
@@ -101,12 +102,11 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
     override fun onClick(view: View) {
         when (view.id) {
             R.id.olauncherHiddenApps -> showHiddenApps()
-            R.id.moreFeatures -> viewModel.showDialog.postValue(Constants.Dialog.PRO_MESSAGE)
             R.id.screenTimeOnOff -> viewModel.showDialog.postValue(Constants.Dialog.DIGITAL_WELLBEING)
             R.id.appInfo -> openAppInfo(requireContext(), Process.myUserHandle(), BuildConfig.APPLICATION_ID)
             R.id.setLauncher -> viewModel.resetLauncherLiveData.call()
             R.id.importFolders -> viewModel.pickFoldersFile.call()
-            R.id.widgets -> showWidgetsMenu(view)
+            R.id.widgets -> showWidgetsDialog()
             R.id.toggleLock -> toggleLockMode()
             // Home button for recents feature disabled
             // R.id.homeButtonRecents -> toggleHomeButtonRecents()
@@ -120,6 +120,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
             R.id.appThemeText -> showAppThemeMenu(view, showSystem = false)
             R.id.textSizeValue -> showTextSizeDialog()
             R.id.boldFont -> toggleBoldFont()
+            R.id.fontValue -> showFontDialog()
 
             R.id.swipeLeftApp -> showAppListIfEnabled(Constants.FLAG_SET_SWIPE_LEFT_APP)
             R.id.swipeRightApp -> showAppListIfEnabled(Constants.FLAG_SET_SWIPE_RIGHT_APP)
@@ -170,7 +171,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.importFolders.setOnClickListener(this)
         binding.widgets.setOnClickListener(this)
         binding.aboutOlauncher.setOnClickListener(this)
-        binding.moreFeatures.setOnClickListener(this)
         binding.autoShowKeyboard.setOnClickListener(this)
         binding.toggleLock.setOnClickListener(this)
         // Home button for recents feature disabled
@@ -187,6 +187,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.appThemeText.setOnClickListener(this)
         binding.textSizeValue.setOnClickListener(this)
         binding.boldFont.setOnClickListener(this)
+        binding.fontValue.setOnClickListener(this)
 
         binding.share.setOnClickListener(this)
         binding.rate.setOnClickListener(this)
@@ -364,28 +365,32 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         )
     }
 
-    // Placed widgets first (tap one to remove it), then "Add widget"
-    private fun showWidgetsMenu(anchor: View) {
+    // Placed widgets as a list (tap one to remove it); the action adds one
+    private fun showWidgetsDialog() {
         val ids = prefs.widgetIds
-        anchor.showPopupMenu(configure = { menu ->
-            ids.forEachIndexed { index, appWidgetId ->
-                val label = Widgets.label(requireContext(), appWidgetId) ?: getString(R.string.widget_missing)
-                menu.add(0, index, index, label)
-            }
-            menu.add(0, MENU_ADD_WIDGET, ids.size, R.string.add_widget)
-        }) { item ->
-            if (item.itemId == MENU_ADD_WIDGET) showWidgetProviders(anchor)
-            else ids.getOrNull(item.itemId)?.let { confirmRemoveWidget(it) }
-        }
+        val labels = ids.map { Widgets.label(requireContext(), it) ?: getString(R.string.widget_missing) }
+        showDialog(
+            requireContext().createListDialog(
+                title = R.string.widgets,
+                items = labels,
+                action = R.string.add_widget,
+                message = if (ids.isEmpty()) R.string.no_widgets else R.string.tap_widget_to_remove,
+                onAction = { showWidgetProvidersDialog() },
+                onPick = { confirmRemoveWidget(ids[it]) }
+            )
+        )
     }
 
-    private fun showWidgetProviders(anchor: View) {
+    private fun showWidgetProvidersDialog() {
         val providers = Widgets.providers(requireContext())
-        anchor.showPopupMenu(configure = { menu ->
-            providers.forEachIndexed { index, (label, _) -> menu.add(0, index, index, label) }
-        }) { item ->
-            providers.getOrNull(item.itemId)?.let { viewModel.addWidget.value = it.second }
-        }
+        showDialog(
+            requireContext().createListDialog(
+                title = R.string.add_widget,
+                items = providers.map { it.first },
+                action = R.string.close,
+                onPick = { viewModel.addWidget.value = providers[it].second }
+            )
+        )
     }
 
     private fun confirmRemoveWidget(appWidgetId: Int) {
@@ -590,6 +595,39 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
 
     private fun populateBoldFont() {
         binding.boldFont.text = getString(if (prefs.boldFont) R.string.on else R.string.off)
+        populateFont()
+    }
+
+    private fun populateFont() {
+        binding.fontValue.text = Fonts.presetLabel(prefs.fontFamily)?.let { getString(it) }
+            ?: prefs.fontFileName.ifBlank { getString(R.string.font_from_file) }
+    }
+
+    // System families, the last imported file, then "From file…"; a change recreates the activity
+    private fun showFontDialog() {
+        val families = Fonts.presets.map { it.first }.toMutableList()
+        val items = Fonts.presets.map { getString(it.second) }.toMutableList()
+        if (Fonts.hasImportedFile(requireContext()) && prefs.fontFileName.isNotBlank()) {
+            families.add(Fonts.FROM_FILE)
+            items.add(prefs.fontFileName)
+        }
+        items.add(getString(R.string.font_from_file))
+        showDialog(
+            requireContext().createListDialog(
+                title = R.string.font,
+                items = items,
+                action = R.string.close,
+                onPick = { index ->
+                    val family = families.getOrNull(index)
+                    if (family == null) {
+                        viewModel.pickFontFile.call()
+                    } else if (family != prefs.fontFamily) {
+                        prefs.fontFamily = family
+                        requireActivity().recreate()
+                    }
+                }
+            )
+        )
     }
 
     private fun populateScreenTimeOnOff() {
@@ -697,13 +735,6 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
             binding.rate.setCompoundDrawablesWithIntrinsicBounds(0, android.R.drawable.arrow_down_float, 0, 0)
     }
 
-    private fun populateProMessage() {
-        if (prefs.proMessageShown.not() && prefs.userState == Constants.UserState.SHARE) {
-            prefs.proMessageShown = true
-            viewModel.showDialog.postValue(Constants.Dialog.PRO_MESSAGE)
-        }
-    }
-
     override fun onDestroyView() {
         // Dismissing the text size dialog applies any pending scale via its dismiss listener
         dialog?.dismiss()
@@ -716,9 +747,5 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
     override fun onDestroy() {
         viewModel.checkForMessages.call()
         super.onDestroy()
-    }
-
-    companion object {
-        private const val MENU_ADD_WIDGET = 100_000
     }
 }

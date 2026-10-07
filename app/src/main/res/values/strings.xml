@@ -198,4 +198,16 @@
     <string name="remove_widget_message">It disappears from the home screen.</string>
     <string name="widget_missing">Unavailable widget</string>
     <string name="widget_add_failed">Could not add the widget</string>
+    <string name="no_widgets">No widgets yet.</string>
+    <string name="tap_widget_to_remove">Tap a widget to remove it.</string>
+
+    <!-- Fonts (fork) -->
+    <string name="font">Font</string>
+    <string name="font_default">Default</string>
+    <string name="font_sans">Sans</string>
+    <string name="font_condensed">Condensed</string>
+    <string name="font_serif">Serif</string>
+    <string name="font_monospace">Monospace</string>
+    <string name="font_from_file">From file…</string>
+    <string name="font_failed">This file is not a font Android can read</string>
 </resources>
