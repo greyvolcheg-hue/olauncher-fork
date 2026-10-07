@@ -121,6 +121,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
             R.id.textSizeValue -> showTextSizeDialog()
             R.id.boldFont -> toggleBoldFont()
             R.id.fontValue -> showFontDialog()
+            R.id.lineSpacingValue -> showLineSpacingDialog()
 
             R.id.swipeLeftApp -> showAppListIfEnabled(Constants.FLAG_SET_SWIPE_LEFT_APP)
             R.id.swipeRightApp -> showAppListIfEnabled(Constants.FLAG_SET_SWIPE_RIGHT_APP)
@@ -188,6 +189,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.textSizeValue.setOnClickListener(this)
         binding.boldFont.setOnClickListener(this)
         binding.fontValue.setOnClickListener(this)
+        binding.lineSpacingValue.setOnClickListener(this)
 
         binding.share.setOnClickListener(this)
         binding.rate.setOnClickListener(this)
@@ -596,6 +598,35 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
     private fun populateBoldFont() {
         binding.boldFont.text = getString(if (prefs.boldFont) R.string.on else R.string.off)
         populateFont()
+        populateLineSpacing()
+    }
+
+    // Shown in dp; unset means the layout default, which differs by screen density
+    private fun currentLineSpacingDp(): Int = prefs.rowSpacingDp.takeIf { it >= 0 }
+        ?: (resources.getDimension(R.dimen.app_padding_vertical) / resources.displayMetrics.density).toInt()
+
+    private fun populateLineSpacing() {
+        binding.lineSpacingValue.text = getString(R.string.dp_value, currentLineSpacingDp())
+    }
+
+    // Same stepper as text size; each step is saved at once and used the next time a list is shown
+    private fun showLineSpacingDialog() {
+        var stepper: DialogTextSizeBinding? = null
+        val dialog = requireContext().createDialog(R.string.line_spacing, R.string.okay) { container ->
+            DialogTextSizeBinding.inflate(layoutInflater, container, false).also { stepper = it }.root
+        }
+        stepper?.apply {
+            fun step(delta: Int) {
+                val value = (currentLineSpacingDp() + delta).coerceIn(0, MAX_LINE_SPACING_DP)
+                prefs.rowSpacingDp = value
+                textSizeCurrent.text = getString(R.string.dp_value, value)
+                populateLineSpacing()
+            }
+            textSizeCurrent.text = getString(R.string.dp_value, currentLineSpacingDp())
+            textSizeMinus.setOnClickListener { step(-LINE_SPACING_STEP_DP) }
+            textSizePlus.setOnClickListener { step(LINE_SPACING_STEP_DP) }
+        }
+        showDialog(dialog)
     }
 
     private fun populateFont() {
@@ -747,5 +778,10 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
     override fun onDestroy() {
         viewModel.checkForMessages.call()
         super.onDestroy()
+    }
+
+    companion object {
+        private const val LINE_SPACING_STEP_DP = 2
+        private const val MAX_LINE_SPACING_DP = 32
     }
 }

@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import app.olauncher.data.FolderRow
 import app.olauncher.databinding.AdapterFolderBinding
+import app.olauncher.helper.setVerticalPadding
 
 class FolderAdapter(
     private val labelGravity: Int,
     private val folderClickListener: (FolderRow) -> Unit,
     private val folderLongClickListener: (FolderRow, View) -> Unit,
+    private val rowSpacingPx: Int = -1,
 ) : ListAdapter<FolderRow, FolderAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -29,17 +31,19 @@ class FolderAdapter(
         ViewHolder(AdapterFolderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(getItem(position), labelGravity, folderClickListener, folderLongClickListener)
+        holder.bind(getItem(position), labelGravity, rowSpacingPx, folderClickListener, folderLongClickListener)
 
     class ViewHolder(private val binding: AdapterFolderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
             row: FolderRow,
             labelGravity: Int,
+            rowSpacingPx: Int,
             clickListener: (FolderRow) -> Unit,
             longClickListener: (FolderRow, View) -> Unit,
         ) = with(binding) {
             folderTitle.text = row.label
             folderTitle.gravity = labelGravity
+            folderTitle.setVerticalPadding(rowSpacingPx)
             folderTitle.setOnClickListener { clickListener(row) }
             folderTitle.setOnLongClickListener {
                 longClickListener(row, it)

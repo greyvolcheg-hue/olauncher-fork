@@ -42,6 +42,7 @@ import app.olauncher.helper.isSystemApp
 import app.olauncher.helper.openAppInfo
 import app.olauncher.helper.openSearch
 import app.olauncher.helper.openUrl
+import app.olauncher.helper.rowSpacingPx
 import app.olauncher.helper.showKeyboard
 import app.olauncher.helper.showPopupMenu
 import app.olauncher.helper.showToast
@@ -286,13 +287,15 @@ class AppDrawerFragment : BaseFragment() {
                 viewModel.openPrivateSpaceSettings()
                 findNavController().popBackStack(R.id.mainFragment, false)
             },
-            appFolderListener = { appModel, anchor -> showAssignFolderMenu(appModel, anchor) }
+            appFolderListener = { appModel, anchor -> showAssignFolderMenu(appModel, anchor) },
+            rowSpacingPx = prefs.rowSpacingPx()
         )
 
         folderAdapter = FolderAdapter(
             prefs.appLabelAlignment,
             folderClickListener = { row -> openFolder(row.view) },
-            folderLongClickListener = { row, anchor -> showFolderMenu(row, anchor) }
+            folderLongClickListener = { row, anchor -> showFolderMenu(row, anchor) },
+            rowSpacingPx = prefs.rowSpacingPx()
         )
 
         linearLayoutManager = object : LinearLayoutManager(requireContext()) {
