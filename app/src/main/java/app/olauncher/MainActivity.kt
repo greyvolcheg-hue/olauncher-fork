@@ -439,7 +439,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setPlainWallpaper() {
         if (this.isDarkThemeOn())
-            setPlainWallpaper(this, android.R.color.black)
+            setPlainWallpaper(this, R.color.volkBackground)
         else setPlainWallpaper(this, android.R.color.white)
     }
 
@@ -463,7 +463,8 @@ class MainActivity : AppCompatActivity() {
         timerJob?.cancel()
         timerJob = lifecycleScope.launch {
             delay(200)
-            if ((prefs.appTheme == AppCompatDelegate.MODE_NIGHT_YES && getColorFromAttr(R.attr.primaryColor) != getColor(R.color.white))
+            // The dark theme's text colour is volkText (fork); comparing with white would recreate forever
+            if ((prefs.appTheme == AppCompatDelegate.MODE_NIGHT_YES && getColorFromAttr(R.attr.primaryColor) != getColor(R.color.volkText))
                 || (prefs.appTheme == AppCompatDelegate.MODE_NIGHT_NO && getColorFromAttr(R.attr.primaryColor) != getColor(R.color.black))
             )
                 restartLauncherOrCheckTheme(true)

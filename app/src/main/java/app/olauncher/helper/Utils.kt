@@ -289,11 +289,11 @@ fun getDefaultLauncherPackage(context: Context): String {
 
 fun setPlainWallpaperByTheme(context: Context, appTheme: Int) {
     when (appTheme) {
-        AppCompatDelegate.MODE_NIGHT_YES -> setPlainWallpaper(context, android.R.color.black)
+        AppCompatDelegate.MODE_NIGHT_YES -> setPlainWallpaper(context, R.color.volkBackground)
         AppCompatDelegate.MODE_NIGHT_NO -> setPlainWallpaper(context, android.R.color.white)
         else -> {
             if (context.isDarkThemeOn())
-                setPlainWallpaper(context, android.R.color.black)
+                setPlainWallpaper(context, R.color.volkBackground)
             else setPlainWallpaper(context, android.R.color.white)
         }
     }

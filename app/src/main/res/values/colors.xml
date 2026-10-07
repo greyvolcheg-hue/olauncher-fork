@@ -28,4 +28,15 @@
     <color name="blackInverseTrans80">#CCFFFFFF</color>
     <color name="blackInverseTrans90">#E6FFFFFF</color>
 
+    <!-- Sergey's palette, used by the dark theme (fork). Shades are the same colours with alpha. -->
+    <color name="volkText">#FF00E9</color>
+    <color name="volkTextTrans50">#80FF00E9</color>
+    <color name="volkTextTrans80">#CCFF00E9</color>
+    <color name="volkBackground">#120013</color>
+    <color name="volkBackgroundTrans10">#1A120013</color>
+    <color name="volkBackgroundTrans25">#40120013</color>
+    <color name="volkBackgroundTrans50">#80120013</color>
+    <color name="volkBackgroundTrans80">#CC120013</color>
+    <color name="volkBackgroundTrans90">#E6120013</color>
+
 </resources>
