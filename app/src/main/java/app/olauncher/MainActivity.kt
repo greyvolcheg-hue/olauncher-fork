@@ -260,7 +260,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun placeWidget(appWidgetId: Int) {
         if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) return
-        prefs.widgetIds = prefs.widgetIds + appWidgetId
+        Widgets.place(prefs, appWidgetId)
         pendingWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
         pendingWidgetInfo = null
     }

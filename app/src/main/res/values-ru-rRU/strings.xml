@@ -166,11 +166,9 @@
     <string name="widgets">Виджеты</string>
     <string name="add_widget">Добавить виджет</string>
     <string name="remove_widget">Убрать виджет</string>
-    <string name="remove_widget_message">Он исчезнет с главного экрана.</string>
     <string name="widget_missing">Недоступный виджет</string>
     <string name="widget_add_failed">Не удалось добавить виджет</string>
     <string name="no_widgets">Виджетов пока нет.</string>
-    <string name="tap_widget_to_remove">Нажми на виджет, чтобы убрать его.</string>
 
     <!-- Fonts (fork) -->
     <string name="font">Шрифт</string>
@@ -187,4 +185,7 @@
     <!-- Fork links -->
     <string name="kofi">Угостить кофе на Ko-fi</string>
     <string name="fork_attribution">Форк Olauncher · GPLv3 · исходный код</string>
+    <string name="tap_widget_for_actions">Число означает ряд. Нажми на виджет, чтобы передвинуть или убрать его.</string>
+    <string name="widget_join_row_above">Поставить в ряд выше</string>
+    <string name="widget_own_row">Вынести в отдельный ряд</string>
 </resources><!-- Russian -->

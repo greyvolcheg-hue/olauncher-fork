@@ -79,11 +79,12 @@ fun Context.createDialog(
     @StringRes neutral: Int = 0,
     onNeutral: () -> Unit = {},
     onAction: () -> Unit = {},
+    titleText: CharSequence? = null,
     content: ((ViewGroup) -> View)? = null,
 ): OlDialog {
     val dialog = OlDialog(this)
     val binding = DialogBaseBinding.inflate(LayoutInflater.from(dialog.context))
-    binding.tvTitle.setText(title)
+    if (titleText != null) binding.tvTitle.text = titleText else binding.tvTitle.setText(title)
     binding.tvAction.setText(action)
     if (message != 0) {
         binding.tvMessage.setText(message)
@@ -132,10 +133,11 @@ fun Context.createListDialog(
     @StringRes action: Int,
     @StringRes message: Int = 0,
     onAction: () -> Unit = {},
+    titleText: CharSequence? = null,
     onPick: (Int) -> Unit,
 ): OlDialog {
     var list: DialogListBinding? = null
-    val dialog = createDialog(title, action, message = message, onAction = onAction) { container ->
+    val dialog = createDialog(title, action, message = message, onAction = onAction, titleText = titleText) { container ->
         DialogListBinding.inflate(LayoutInflater.from(container.context), container, false).also { list = it }.root
     }
     list?.apply {
