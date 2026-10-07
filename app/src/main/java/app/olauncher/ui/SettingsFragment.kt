@@ -467,7 +467,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
             setPlainWallpaper(requireContext(), android.R.color.white)
         } else {
             prefs.appTheme = AppCompatDelegate.MODE_NIGHT_YES
-            setPlainWallpaper(requireContext(), android.R.color.black)
+            setPlainWallpaper(requireContext(), R.color.volkBackground)
         }
         if (!prefs.dailyWallpaper) return
         prefs.dailyWallpaper = false
@@ -560,11 +560,11 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
 
     private fun setPlainWallpaper(appTheme: Int) {
         when (appTheme) {
-            AppCompatDelegate.MODE_NIGHT_YES -> setPlainWallpaper(requireContext(), android.R.color.black)
+            AppCompatDelegate.MODE_NIGHT_YES -> setPlainWallpaper(requireContext(), R.color.volkBackground)
             AppCompatDelegate.MODE_NIGHT_NO -> setPlainWallpaper(requireContext(), android.R.color.white)
             else -> {
                 if (requireContext().isDarkThemeOn())
-                    setPlainWallpaper(requireContext(), android.R.color.black)
+                    setPlainWallpaper(requireContext(), R.color.volkBackground)
                 else setPlainWallpaper(requireContext(), android.R.color.white)
             }
         }
