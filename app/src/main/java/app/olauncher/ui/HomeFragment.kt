@@ -755,12 +755,12 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             for (appWidgetId in row) {
                 val hostView = createWidgetView(manager, appWidgetId) ?: continue
                 val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
-                if (rowLayout.childCount > 0) params.marginStart = 16.dpToPx()
+                if (rowLayout.childCount > 0) params.marginStart = WIDGET_GAP_DP.dpToPx()
                 rowLayout.addView(hostView, params)
             }
             if (rowLayout.childCount == 0) continue
             val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f)
-            if (container.childCount > 0) params.topMargin = 16.dpToPx()
+            if (container.childCount > 0) params.topMargin = WIDGET_GAP_DP.dpToPx()
             container.addView(rowLayout, params)
         }
         container.isVisible = container.childCount > 0
@@ -793,14 +793,13 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         val binding = _binding ?: return
         val apps = binding.homeAppsLayout
         val top = if (binding.widgetsLayout.isVisible && binding.dateTimeLayout.isVisible)
-            dateTimeBottom(binding.dateTimeLayout) + 16.dpToPx()
+            dateTimeBottom(binding.dateTimeLayout) + WIDGET_GAP_DP.dpToPx()
         else defaultAppsPaddingTop
         if (apps.paddingTop != top) apps.setPadding(apps.paddingLeft, top, apps.paddingRight, apps.paddingBottom)
     }
 
-    // Returning from the app drawer rebuilds this view, and onResume runs before its first layout.
-    // Measuring the date then gives the first frame the final split; reading bottom would give 0
-    // and stretch the widgets to the top of the screen for a frame.
+    // After the app drawer this view is rebuilt and onResume runs before its first layout, when the
+    // date's bottom is still 0. Measuring the date gives the first frame its final split.
     private fun dateTimeBottom(dateTime: View): Int {
         if (dateTime.isLaidOut) return dateTime.bottom
         val params = dateTime.layoutParams as ViewGroup.MarginLayoutParams
@@ -817,5 +816,10 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         super.onDestroyView()
         shownWidgetRows = null
         _binding = null
+    }
+
+    companion object {
+        // Below the date and between widgets; fragment_home.xml keeps the same gap above the apps
+        private const val WIDGET_GAP_DP = 16
     }
 }
