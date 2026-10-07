@@ -83,7 +83,7 @@
     <string name="please_set_olauncher_as_default_first">Сначала установите Olauncher в качестве лаунчера по умолчанию.</string>
     <string name="affiliate">Партнер</string>
     <string name="tip_start_typing_for_rename">Совет: начните вводить текст чтобы ПЕРЕИМЕНОВАТЬ приложение.</string>
-    <string name="hidden_apps_message">Примечание: для доступа к скрытым приложениям нажмите «Olauncher» в верхней части страницы настроек.\n\nБолее подробная информация доступна на нашей странице «О приложении».</string>
+    <string name="hidden_apps_message">Скрытые приложения открываются по нажатию на «Olauncher» вверху настроек.</string>
     <string name="accessibility_disclosure">Включите службу специальных возможностей Olauncher в настройках вашего устройства, чтобы включить жест двойного касания для блокировки.\n\nОбратите внимание, что эта служба используется только для этой функции. Наша служба специальных возможностей не собирает и не передаёт никакие данные.</string>
     <string name="accept">Принять</string>
     <string name="permission">Разрешение</string>
@@ -183,4 +183,8 @@
     <string name="font_failed">Android не может прочитать этот файл как шрифт</string>
     <string name="line_spacing">Межстрочный интервал</string>
     <string name="dp_value">%1$d dp</string>
+
+    <!-- Fork links -->
+    <string name="kofi">Угостить кофе на Ko-fi</string>
+    <string name="fork_attribution">Форк Olauncher · GPLv3 · исходный код</string>
 </resources><!-- Russian -->

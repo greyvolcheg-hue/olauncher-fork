@@ -111,7 +111,7 @@
     <string name="please_set_olauncher_as_default_first">Please set Olauncher as default first</string>
     <string name="affiliate">Affiliate</string>
     <string name="tip_start_typing_for_rename">Tip: Start typing for app RENAME option</string>
-    <string name="hidden_apps_message">Note: Tap on \'Olauncher\' at the top of this Settings page to find your hidden apps.\n\nMore details available in our About page.</string>
+    <string name="hidden_apps_message">Tap \'Olauncher\' at the top of Settings to find hidden apps.</string>
     <string name="accessibility_disclosure">Please turn on Olauncher\'s accessibility service in your device\'s settings to enable Double tap to lock gesture.
     \n\nPlease note that this service is only used for this particular feature. Our accessibility service does not collect or share any data.</string>
     <string name="accept">Accept</string>
@@ -212,4 +212,8 @@
     <string name="font_failed">This file is not a font Android can read</string>
     <string name="line_spacing">Line spacing</string>
     <string name="dp_value">%1$d dp</string>
+
+    <!-- Fork links -->
+    <string name="kofi">Buy me a coffee on Ko-fi</string>
+    <string name="fork_attribution">Fork of Olauncher · GPLv3 · source code</string>
 </resources>
