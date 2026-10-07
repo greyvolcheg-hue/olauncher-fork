@@ -41,7 +41,7 @@ object Folders {
             appModel.folderKey?.let { appFolders[it] }?.takeIf { it in folders }
     }
 
-    /** Returns the folder's stored name, the existing one if a folder differs only in case, or null for a blank name. */
+    /** Returns the stored name: the existing one when only case differs, null for a blank name. */
     fun create(prefs: Prefs, name: String): String? {
         val trimmed = name.trim()
         if (trimmed.isEmpty()) return null
