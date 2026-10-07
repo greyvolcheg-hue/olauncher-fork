@@ -2,10 +2,10 @@
     <string name="app">App</string>
     <string name="set_as_default_launcher">Angi som standard launcher</string>
     <string name="set_as_default_launcher_u"><u>Angi som standard launcher</u></string>
-    <string name="set_as_default_launcher_first">Angi først Olauncher som standard</string>
+    <string name="set_as_default_launcher_first">Angi først CatLauncher som standard</string>
     <string name="double_tap_to_lock_screen">Dobbelttrykk for å låse</string>
     <string name="home_button_show_recents">Hjem-knapp for nylige apper</string>
-    <string name="admin_permission_message">Olauncher lover å bruke tilgjengelighetstillatelsen ansvarlig. Olauncher samler ikke inn eller deler noen data.</string>
+    <string name="admin_permission_message">CatLauncher lover å bruke tilgjengelighetstillatelsen ansvarlig. CatLauncher samler ikke inn eller deler noen data.</string>
     <string name="off">Av</string>
     <string name="on">På</string>
     <string name="change_default_launcher">Endre standard launcher</string>
@@ -31,19 +31,17 @@
     <string name="system_default">System</string>
     <string name="dark">Mørk</string>
     <string name="light">Lys</string>
-    <string name="rate_us_message">Hei, du vil ikke se denne meldingen igjen.
-        \n\nHvis du synes Olauncher er nyttig, kan du legge igjen en 5-stjerners vurdering? Det vil bety mye for oss. Takk!</string>
     <string name="app_usage_message">For å vise/skjule skjermtiden din på startskjermen må du tillate eller avslå tillatelsen for appbruk.
         \n\nMerk: Ingen data om appbruk samles inn. Alt behandles på enheten din.</string>
-    <string name="accessibility_service_description">Tilgjengelighetstillatelsen kreves for å aktivere bevegelsen - dobbelttrykk for å låse. Ingen data hentet av Olauncher via denne tjenesten forlater enheten din.</string>
+    <string name="accessibility_service_description">Tilgjengelighetstillatelsen kreves for å aktivere bevegelsen - dobbelttrykk for å låse. Ingen data hentet av CatLauncher via denne tjenesten forlater enheten din.</string>
     <string name="close">Lukk</string>
     <string name="date">Dato</string>
     <string name="date_only">Kun dato</string>
     <string name="bottom_on">Nederst: På</string>
     <string name="bottom_off">Nederst: Av</string>
-    <string name="please_set_olauncher_as_default_first">Angi først Olauncher som standard</string>
-    <string name="hidden_apps_message">Merk: Trykk på \'Olauncher\' øverst på denne innstillingssiden for å finne de skjulte appene dine.\n\nFlere detaljer finnes på vår Om-side.</string>
-    <string name="accessibility_disclosure">Slå på Olaunchers tilgjengelighetstjeneste i enhetens innstillinger for å aktivere bevegelsen Dobbelttrykk for å låse.\n\nMerk at denne tjenesten kun brukes til denne bestemte funksjonen. Tilgjengelighetstjenesten vår samler ikke inn eller deler noen data.</string>
+    <string name="please_set_olauncher_as_default_first">Angi først CatLauncher som standard</string>
+    <string name="hidden_apps_message">Merk: Trykk på \'CatLauncher\' øverst på denne innstillingssiden for å finne de skjulte appene dine.\n\nFlere detaljer finnes på vår Om-side.</string>
+    <string name="accessibility_disclosure">Slå på CatLaunchers tilgjengelighetstjeneste i enhetens innstillinger for å aktivere bevegelsen Dobbelttrykk for å låse.\n\nMerk at denne tjenesten kun brukes til denne bestemte funksjonen. Tilgjengelighetstjenesten vår samler ikke inn eller deler noen data.</string>
     <string name="permission">Tillatelse</string>
     <string name="enable">Aktiver</string>
     <string name="disable">Deaktiver</string>
@@ -53,7 +51,7 @@
     <string name="text_size">Tekststørrelse</string>
     <string name="enabled">Aktivert</string>
     <string name="please_turn_on_double_tap_to_unlock">Slå på dobbelttrykk for å låse</string>
-    <string name="launcher_failed_to_lock_device">Olauncher klarte ikke å låse enheten.\nSjekk appinnstillingene dine.</string>
+    <string name="launcher_failed_to_lock_device">CatLauncher klarte ikke å låse enheten.\nSjekk appinnstillingene dine.</string>
     <string name="long_press_to_select_app">Langt trykk for å velge app</string>
     <string name="unable_to_open_app">Kan ikke åpne app</string>
     <string name="unable_to_open_app_info">Kan ikke åpne appinformasjon</string>
@@ -65,7 +63,7 @@
     <string name="swipe_left_app_disabled">App ved sveip til venstre deaktivert</string>
     <string name="swipe_right_app_disabled">App ved sveip til høyre deaktivert</string>
     <string name="your_wallpaper_will_update_shortly">Bakgrunnsbildet ditt oppdateres snart</string>
-    <string name="olauncher_is_not_default_launcher">Olauncher er ikke standard. Oppdatering av bakgrunnsbilde vil mislykkes.</string>
+    <string name="olauncher_is_not_default_launcher">CatLauncher er ikke standard. Oppdatering av bakgrunnsbilde vil mislykkes.</string>
     <string name="long_press_to_enable">Langt trykk for å aktivere</string>
     <string name="no_hidden_apps">Ingen skjulte apper</string>
     <string name="hidden_apps">Skjulte apper</string>

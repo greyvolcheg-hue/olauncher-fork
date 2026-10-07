@@ -3,9 +3,9 @@
     <string name="app">App</string>
     <string name="set_as_default_launcher">Stel in als standaard launcher</string>
     <string name="set_as_default_launcher_u"><u>Stel in als standaard launcher</u></string>
-    <string name="set_as_default_launcher_first">Stel Olauncher eerst in als standaard</string>
+    <string name="set_as_default_launcher_first">Stel CatLauncher eerst in als standaard</string>
     <string name="double_tap_to_lock_screen">Dubbel tik om te vergrendelen</string>
-    <string name="admin_permission_message">Olauncher belooft de toegankelijkheidstoestemming verantwoord te gebruiken. Olauncher verzamelt of deelt geen gegevens.</string>
+    <string name="admin_permission_message">CatLauncher belooft de toegankelijkheidstoestemming verantwoord te gebruiken. CatLauncher verzamelt of deelt geen gegevens.</string>
     <string name="off">Uit</string>
     <string name="on">Aan</string>
     <string name="change_default_launcher">Wijzig standaard launcher</string>
@@ -31,20 +31,18 @@
     <string name="system_default">Systeem</string>
     <string name="dark">Donker</string>
     <string name="light">Licht</string>
-    <string name="rate_us_message">Hoi, je zult dit bericht niet meer zien.
-        \n\nAls je Olauncher nuttig vindt, zou je dan een 5-sterren beoordeling willen achterlaten? Het zou veel voor ons betekenen. Dank je!</string>
-    <!--         \n\nIf you have a moment to spare, could you please share Olauncher with others? Olauncher needs people. More importantly, people need Olauncher.</string>-->
+    <!--         \n\nIf you have a moment to spare, could you please share CatLauncher with others? CatLauncher needs people. More importantly, people need CatLauncher.</string>-->
     <string name="app_usage_message">Om je schermtijd op het startscherm te tonen of te verbergen, geef of weiger de toestemming voor app-gebruik.
         \n\nOpmerking: er worden geen app-gebruiksgegevens verzameld. Alles wordt op je apparaat verwerkt.</string>
-    <string name="accessibility_service_description">De toegankelijkheidstoestemming is vereist om het gebaar dubbel tikken om te vergrendelen mogelijk te maken. Gegevens die Olauncher via deze service verkrijgt, verlaten je apparaat niet.</string>
+    <string name="accessibility_service_description">De toegankelijkheidstoestemming is vereist om het gebaar dubbel tikken om te vergrendelen mogelijk te maken. Gegevens die CatLauncher via deze service verkrijgt, verlaten je apparaat niet.</string>
     <string name="close">Sluiten</string>
     <string name="date">Datum</string>
     <string name="date_only">Alleen datum</string>
     <string name="bottom_on">Onder: Aan</string>
     <string name="bottom_off">Onder: Uit</string>
-    <string name="please_set_olauncher_as_default_first">Stel Olauncher eerst in als standaard</string>
-    <string name="hidden_apps_message">Opmerking: Tik bovenaan deze instellingenpagina op \'Olauncher\' om je verborgen apps te vinden.\n\nMeer informatie is beschikbaar op onze Over-pagina.</string>
-    <string name="accessibility_disclosure">Schakel de toegankelijkheidsdienst van Olauncher in via de instellingen van je apparaat om het gebaar dubbel tikken om te vergrendelen te activeren.\n\nHoud er rekening mee dat deze service alleen voor deze specifieke functie wordt gebruikt. Onze toegankelijkheidsdienst verzamelt of deelt geen gegevens.</string>
+    <string name="please_set_olauncher_as_default_first">Stel CatLauncher eerst in als standaard</string>
+    <string name="hidden_apps_message">Opmerking: Tik bovenaan deze instellingenpagina op \'CatLauncher\' om je verborgen apps te vinden.\n\nMeer informatie is beschikbaar op onze Over-pagina.</string>
+    <string name="accessibility_disclosure">Schakel de toegankelijkheidsdienst van CatLauncher in via de instellingen van je apparaat om het gebaar dubbel tikken om te vergrendelen te activeren.\n\nHoud er rekening mee dat deze service alleen voor deze specifieke functie wordt gebruikt. Onze toegankelijkheidsdienst verzamelt of deelt geen gegevens.</string>
     <string name="permission">Toestemming</string>
     <string name="home_button_show_recents">Startknop voor recente apps</string>
     <string name="enable">Inschakelen</string>
@@ -55,7 +53,7 @@
     <string name="text_size">Tekstgrootte</string>
     <string name="enabled">Ingeschakeld</string>
     <string name="please_turn_on_double_tap_to_unlock">Schakel dubbel tik om te vergrendelen in</string>
-    <string name="launcher_failed_to_lock_device">Olauncher kon het apparaat niet vergrendelen.\nControleer je app-instellingen.</string>
+    <string name="launcher_failed_to_lock_device">CatLauncher kon het apparaat niet vergrendelen.\nControleer je app-instellingen.</string>
     <string name="long_press_to_select_app">Lang indrukken om app te selecteren</string>
     <string name="unable_to_open_app">Kan app niet openen</string>
     <string name="system_app_cannot_delete">Systeem-app, kan niet worden verwijderd</string>
@@ -66,7 +64,7 @@
     <string name="swipe_left_app_disabled">Veeg links-app uitgeschakeld</string>
     <string name="swipe_right_app_disabled">Veeg rechts-app uitgeschakeld</string>
     <string name="your_wallpaper_will_update_shortly">Je achtergrond wordt binnenkort bijgewerkt</string>
-    <string name="olauncher_is_not_default_launcher">Olauncher is niet de standaard launcher. Achtergrondupdate zal mislukken.</string>
+    <string name="olauncher_is_not_default_launcher">CatLauncher is niet de standaard launcher. Achtergrondupdate zal mislukken.</string>
     <string name="long_press_to_enable">Lang indrukken om in te schakelen</string>
     <string name="no_hidden_apps">Geen verborgen apps</string>
     <string name="hidden_apps">Verborgen apps</string>

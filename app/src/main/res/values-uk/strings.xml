@@ -3,9 +3,9 @@
     <string name="app">Додаток</string>
     <string name="set_as_default_launcher">Зробити лаунчером за замовчуванням</string>
     <string name="set_as_default_launcher_u"><u>Зробити лаунчером за замовчуванням</u></string>
-    <string name="set_as_default_launcher_first">Спочатку зробіть Olauncher лаунчером за замовчуванням</string>
+    <string name="set_as_default_launcher_first">Спочатку зробіть CatLauncher лаунчером за замовчуванням</string>
     <string name="double_tap_to_lock_screen">Блокування подвійним тапом</string>
-    <string name="admin_permission_message">Olauncher обіцяє відповідально використовувати дозвіл спеціальних можливостей. Olauncher не збирає і не передає жодних даних.</string>
+    <string name="admin_permission_message">CatLauncher обіцяє відповідально використовувати дозвіл спеціальних можливостей. CatLauncher не збирає і не передає жодних даних.</string>
     <string name="off">Вимк.</string>
     <string name="on">Увімк.</string>
     <string name="change_default_launcher">Змінити лаунчер за замовчуванням</string>
@@ -32,18 +32,17 @@
     <string name="system_default">Системна</string>
     <string name="dark">Темна</string>
     <string name="light">Світла</string>
-    <string name="rate_us_message">Вітаємо, ви більше не побачите це повідомлення.\n\nЯкщо Olauncher вам корисний, чи не могли б ви залишити відгук із 5 зірками? Для нас це дуже багато значить. Дякуємо!</string>
     <string name="app_usage_message">Щоб показати/ховати час роботи з екраном на головному екрані, будь ласка, дозвольте або забороніть дозвіл на використання програми.
         \n\nПримітка: Не збираються дані про використання програми. Все обробляється на вашому пристрої.</string>
-    <string name="accessibility_service_description">Дозвіл спеціальних можливостей потрібен, щоб увімкнути жест подвійного торкання для блокування. Будь-які дані, отримані Olauncher через цей сервіс, не залишать ваш пристрій.</string>
+    <string name="accessibility_service_description">Дозвіл спеціальних можливостей потрібен, щоб увімкнути жест подвійного торкання для блокування. Будь-які дані, отримані CatLauncher через цей сервіс, не залишать ваш пристрій.</string>
     <string name="close">Закрити</string>
     <string name="date">Дата</string>
     <string name="date_only">Тільки дата</string>
     <string name="bottom_on">Внизу: Увімк.</string>
     <string name="bottom_off">Внизу: Вимк.</string>
-    <string name="please_set_olauncher_as_default_first">Спочатку встановіть Olauncher як стандартний лаунчер.</string>
-    <string name="hidden_apps_message">Примітка: натисніть «Olauncher» у верхній частині сторінки налаштувань, щоб знайти приховані додатки.\n\nДокладніша інформація доступна на нашій сторінці «Про додаток».</string>
-    <string name="accessibility_disclosure">Увімкніть службу спеціальних можливостей Olauncher у налаштуваннях вашого пристрою, щоб увімкнути жест подвійного торкання для блокування.\n\nЗверніть увагу, що ця служба використовується лише для цієї функції. Наша служба спеціальних можливостей не збирає та не поширює жодних даних.</string>
+    <string name="please_set_olauncher_as_default_first">Спочатку встановіть CatLauncher як стандартний лаунчер.</string>
+    <string name="hidden_apps_message">Примітка: натисніть «CatLauncher» у верхній частині сторінки налаштувань, щоб знайти приховані додатки.\n\nДокладніша інформація доступна на нашій сторінці «Про додаток».</string>
+    <string name="accessibility_disclosure">Увімкніть службу спеціальних можливостей CatLauncher у налаштуваннях вашого пристрою, щоб увімкнути жест подвійного торкання для блокування.\n\nЗверніть увагу, що ця служба використовується лише для цієї функції. Наша служба спеціальних можливостей не збирає та не поширює жодних даних.</string>
     <string name="permission">Дозвіл</string>
     <string name="home_button_show_recents">Кнопка додому для нещодавніх</string>
     <string name="enable">Увімкнути</string>
@@ -54,7 +53,7 @@
     <string name="text_size">Розмір тексту</string>
     <string name="enabled">Увімкнено</string>
     <string name="please_turn_on_double_tap_to_unlock">Будь ласка, увімкніть подвійний дотик для блокування</string>
-    <string name="launcher_failed_to_lock_device">Olauncher не вдалося заблокувати пристрій.\nБудь ласка, перевірте налаштування вашої програми.</string>
+    <string name="launcher_failed_to_lock_device">CatLauncher не вдалося заблокувати пристрій.\nБудь ласка, перевірте налаштування вашої програми.</string>
     <string name="long_press_to_select_app">Тривале натискання для вибору програми</string>
     <string name="unable_to_open_app">Неможливо відкрити додаток</string>
     <string name="system_app_cannot_delete">Неможливо видалити системну програму</string>
@@ -65,7 +64,7 @@
     <string name="swipe_left_app_disabled">Додаток для свайпу вліво вимкнено</string>
     <string name="swipe_right_app_disabled">Додаток для свайпу вправо вимкнено</string>
     <string name="your_wallpaper_will_update_shortly">Ваші шпалери незабаром оновляться</string>
-    <string name="olauncher_is_not_default_launcher">Olauncher не є стандартним лаунчером.\nЩоденне оновлення шпалер може завершитися помилкою.</string>
+    <string name="olauncher_is_not_default_launcher">CatLauncher не є стандартним лаунчером.\nЩоденне оновлення шпалер може завершитися помилкою.</string>
     <string name="long_press_to_enable">Натисніть та утримуйте, щоб увімкнути</string>
     <string name="no_hidden_apps">Немає прихованих додатків</string>
     <string name="hidden_apps">Приховані додатки</string>

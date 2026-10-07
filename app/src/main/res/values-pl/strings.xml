@@ -3,16 +3,16 @@
     <string name="app">Aplikacja</string>
     <string name="set_as_default_launcher">Ustaw jako domyślny program uruchamiający</string>
     <string name="set_as_default_launcher_u"><u>Ustaw jako domyślny program uruchamiający</u></string>
-    <string name="set_as_default_launcher_first">Najpierw ustaw Olauncher jako domyślny</string>
+    <string name="set_as_default_launcher_first">Najpierw ustaw CatLauncher jako domyślny</string>
     <string name="_8">8</string>
     <string name="okay">OK</string>
     <string name="your_wallpaper_will_update_shortly">Twoja tapeta zostanie wkrótce zaktualizowana</string>
-    <string name="olauncher_is_not_default_launcher">Olauncher nie jest domyślnym programem uruchamiającym. Codzienna aktualizacja tapety może się nie powieść.</string>
+    <string name="olauncher_is_not_default_launcher">CatLauncher nie jest domyślnym programem uruchamiającym. Codzienna aktualizacja tapety może się nie powieść.</string>
     <string name="long_press_to_enable">Naciśnij długo, aby włączyć</string>
     <string name="no_hidden_apps">Brak ukrytych aplikacji</string>
     <string name="hidden_apps">Ukryte aplikacje</string>
-    <string name="hidden_apps_message">Uwaga: Stuknij w „Olauncher” u góry tej strony ustawień, aby znaleźć ukryte aplikacje.\n\nWięcej informacji znajdziesz na naszej stronie Informacje.</string>
-    <string name="accessibility_disclosure">Włącz usługę ułatwień dostępu Olauncher w ustawieniach urządzenia, aby włączyć gest podwójnego dotknięcia do zablokowania.\n\nPamiętaj, że ta usługa jest używana wyłącznie do tej jednej funkcji. Nasza usługa ułatwień dostępu nie zbiera ani nie udostępnia żadnych danych.</string>
+    <string name="hidden_apps_message">Uwaga: Stuknij w „CatLauncher” u góry tej strony ustawień, aby znaleźć ukryte aplikacje.\n\nWięcej informacji znajdziesz na naszej stronie Informacje.</string>
+    <string name="accessibility_disclosure">Włącz usługę ułatwień dostępu CatLauncher w ustawieniach urządzenia, aby włączyć gest podwójnego dotknięcia do zablokowania.\n\nPamiętaj, że ta usługa jest używana wyłącznie do tej jednej funkcji. Nasza usługa ułatwień dostępu nie zbiera ani nie udostępnia żadnych danych.</string>
     <string name="permission">Uprawnienie</string>
     <string name="home_button_show_recents">Przycisk ekranu głównego dla ostatnich</string>
     <string name="enable">Włącz</string>
@@ -23,7 +23,7 @@
     <string name="text_size">Rozmiar czcionki</string>
     <string name="enabled">Włączono</string>
     <string name="please_turn_on_double_tap_to_unlock">Włącz podwójne dotknięcie, aby zablokować</string>
-    <string name="launcher_failed_to_lock_device">Olauncherowi nie udało się zablokować urządzenia. Sprawdź ustawienia aplikacji.</string>
+    <string name="launcher_failed_to_lock_device">CatLauncherowi nie udało się zablokować urządzenia. Sprawdź ustawienia aplikacji.</string>
     <string name="long_press_to_select_app">Naciśnij długo, aby wybrać aplikację</string>
     <string name="unable_to_open_app">Nie można otworzyć aplikacji</string>
     <string name="system_app_cannot_delete">Aplikacja systemowa, nie można odinstalować</string>
@@ -31,7 +31,7 @@
     <string name="adapter_show">Pokaż</string>
     <string name="adapter_hide">Ukryj</string>
     <string name="double_tap_to_lock_screen">Dotknij dwukrotnie, aby zablokować</string>
-    <string name="admin_permission_message">Olauncher obiecuje odpowiedzialnie korzystać z uprawnienia ułatwień dostępu. Olauncher nie gromadzi ani nie udostępnia żadnych danych.</string>
+    <string name="admin_permission_message">CatLauncher obiecuje odpowiedzialnie korzystać z uprawnienia ułatwień dostępu. CatLauncher nie gromadzi ani nie udostępnia żadnych danych.</string>
     <string name="off">Wył.</string>
     <string name="on">Wł.</string>
     <string name="change_default_launcher">Zmień domyślny program uruchamiający</string>
@@ -56,16 +56,15 @@
     <string name="system_default">System</string>
     <string name="dark">Ciemny</string>
     <string name="light">Jasny</string>
-    <string name="rate_us_message">Cześć, nie zobaczysz już tej wiadomości.\n\nJeśli Olauncher jest dla Ciebie przydatny, czy możesz zostawić ocenę 5 gwiazdek? Będzie to dla nas bardzo wiele znaczyć. Dziękujemy!</string>
     <string name="app_usage_message">Aby wyświetlić/ukryć czas ekranu na ekranie głównym, pozwól lub zabroń aplikacji na dostęp do danych o użyciu.
         \n\nUwaga: Nie są gromadzone żadne dane o użyciu aplikacji. Wszystko jest przetwarzane na Twoim urządzeniu.</string>
-    <string name="accessibility_service_description">Uprawnienie ułatwień dostępu jest wymagane, aby włączyć gest podwójnego dotknięcia do zablokowania. Żadne dane pozyskane przez Olauncher za pośrednictwem tej usługi nie opuszczą Twojego urządzenia.</string>
+    <string name="accessibility_service_description">Uprawnienie ułatwień dostępu jest wymagane, aby włączyć gest podwójnego dotknięcia do zablokowania. Żadne dane pozyskane przez CatLauncher za pośrednictwem tej usługi nie opuszczą Twojego urządzenia.</string>
     <string name="close">Zamknij</string>
     <string name="date">Data</string>
     <string name="date_only">Tylko data</string>
     <string name="bottom_on">Dół: wł.</string>
     <string name="bottom_off">Dół: wył.</string>
-    <string name="please_set_olauncher_as_default_first">Najpierw ustaw Olauncher jako domyślny program uruchamiający</string>
+    <string name="please_set_olauncher_as_default_first">Najpierw ustaw CatLauncher jako domyślny program uruchamiający</string>
     <string name="app_not_found">Nie znaleziono aplikacji</string>
     <string name="swipe_left_app_enabled">Gest Przesuń w lewo jest włączony</string>
     <string name="swipe_right_app_enabled">Gest Przesuń w prawo jest włączony</string>

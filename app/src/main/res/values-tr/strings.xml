@@ -3,16 +3,16 @@
     <string name="app">Uygulama</string>
     <string name="set_as_default_launcher">Varsayılan başlatıcı olarak ayarla</string>
     <string name="set_as_default_launcher_u"><u>Varsayılan başlatıcı olarak ayarla</u></string>
-    <string name="set_as_default_launcher_first">Önce Olauncher\'ı varsayılan olarak ayarlayın</string>
+    <string name="set_as_default_launcher_first">Önce CatLauncher\'ı varsayılan olarak ayarlayın</string>
     <string name="_8">8</string>
     <string name="okay">Tamam</string>
     <string name="your_wallpaper_will_update_shortly">Duvar kağıdınız birazdan güncellenecek</string>
-    <string name="olauncher_is_not_default_launcher">Olauncher varsayılan başlatıcınız değil. Günlük duvar kağıtları hatalı çalışabilir.</string>
+    <string name="olauncher_is_not_default_launcher">CatLauncher varsayılan başlatıcınız değil. Günlük duvar kağıtları hatalı çalışabilir.</string>
     <string name="long_press_to_enable">Etkinleştirmek için uzun basın</string>
     <string name="no_hidden_apps">Gizli uygulama yok</string>
     <string name="hidden_apps">Gizli uygulamalar</string>
-    <string name="hidden_apps_message">Not: Gizli uygulamalarınızı bulmak için bu ayarlar sayfasının üst kısmındaki \"Olauncher\" yazısına dokunun.\n\nDaha fazla ayrıntı \"Hakkında\" sayfamızda mevcuttur.</string>
-    <string name="accessibility_disclosure">Kilitlemek için çift dokunma hareketini etkinleştirmek için lütfen cihazınızın ayarlarında Olauncher\'ın erişilebilirlik hizmetini açın.\n\nBu hizmetin yalnızca bu özellik için kullanıldığını lütfen unutmayın. Erişilebilirlik hizmetimiz herhangi bir veri toplamaz veya paylaşmaz.</string>
+    <string name="hidden_apps_message">Not: Gizli uygulamalarınızı bulmak için bu ayarlar sayfasının üst kısmındaki \"CatLauncher\" yazısına dokunun.\n\nDaha fazla ayrıntı \"Hakkında\" sayfamızda mevcuttur.</string>
+    <string name="accessibility_disclosure">Kilitlemek için çift dokunma hareketini etkinleştirmek için lütfen cihazınızın ayarlarında CatLauncher\'ın erişilebilirlik hizmetini açın.\n\nBu hizmetin yalnızca bu özellik için kullanıldığını lütfen unutmayın. Erişilebilirlik hizmetimiz herhangi bir veri toplamaz veya paylaşmaz.</string>
     <string name="permission">İzin</string>
     <string name="home_button_show_recents">Ana ekran düğmesi son uygulamalar için</string>
     <string name="enable">Etkinleştir</string>
@@ -23,7 +23,7 @@
     <string name="text_size">Yazı Boyutu</string>
     <string name="enabled">Etkin</string>
     <string name="please_turn_on_double_tap_to_unlock">Lütfen kilitlemek için çift dokunmayı açın</string>
-    <string name="launcher_failed_to_lock_device">Olauncher cihazı kilitleyemedi. Lütfen uygulama ayarlarınızı kontrol edin.</string>
+    <string name="launcher_failed_to_lock_device">CatLauncher cihazı kilitleyemedi. Lütfen uygulama ayarlarınızı kontrol edin.</string>
     <string name="long_press_to_select_app">Uygulamayı seçmek için uzun basın</string>
     <string name="unable_to_open_app">Uygulama açılamıyor</string>
     <string name="system_app_cannot_delete">Sistem uygulaması, kaldırılamaz</string>
@@ -31,7 +31,7 @@
     <string name="adapter_show">Göster</string>
     <string name="adapter_hide">Gizle</string>
     <string name="double_tap_to_lock_screen">Kilitlemek için çift dokunun</string>
-    <string name="admin_permission_message">Olauncher, erişilebilirlik iznini sorumlu bir şekilde kullanacağına söz verir. Olauncher herhangi bir veri toplamaz veya paylaşmaz.</string>
+    <string name="admin_permission_message">CatLauncher, erişilebilirlik iznini sorumlu bir şekilde kullanacağına söz verir. CatLauncher herhangi bir veri toplamaz veya paylaşmaz.</string>
     <string name="off">Kapalı</string>
     <string name="on">Açık</string>
     <string name="change_default_launcher">Varsayılan başlatıcıyı değiştir</string>
@@ -56,16 +56,15 @@
     <string name="system_default">Sistem</string>
     <string name="dark">Koyu</string>
     <string name="light">Açık</string>
-    <string name="rate_us_message">Merhaba, bu mesajı bir daha görmeyeceksiniz.\n\nOlauncher\'ı faydalı buluyorsanız, 5 yıldızlı bir değerlendirme bırakır mısınız? Bu bizim için çok şey ifade eder. Teşekkür ederiz!</string>
     <string name="app_usage_message">Ana ekranınızda ekran sürenizi göstermek/gizlemek için lütfen uygulama kullanım iznini onaylayın veya reddedin.
         \n\nNot: Uygulama kullanım verileri toplanmaz. Her şey cihazınızda işlenir.</string>
-    <string name="accessibility_service_description">Kilitlemek için çift dokunma hareketini etkinleştirmek için erişilebilirlik izni gereklidir. Olauncher tarafından bu hizmet aracılığıyla elde edilen hiçbir veri cihazınızdan ayrılmaz.</string>
+    <string name="accessibility_service_description">Kilitlemek için çift dokunma hareketini etkinleştirmek için erişilebilirlik izni gereklidir. CatLauncher tarafından bu hizmet aracılığıyla elde edilen hiçbir veri cihazınızdan ayrılmaz.</string>
     <string name="close">Kapat</string>
     <string name="date">Tarih</string>
     <string name="date_only">Sadece tarih</string>
     <string name="bottom_on">Alt: Açık</string>
     <string name="bottom_off">Alt: Kapalı</string>
-    <string name="please_set_olauncher_as_default_first">Lütfen önce Olauncher\'ı varsayılan başlatıcınız olarak ayarlayın</string>
+    <string name="please_set_olauncher_as_default_first">Lütfen önce CatLauncher\'ı varsayılan başlatıcınız olarak ayarlayın</string>
     <string name="app_not_found">Uygulama bulunamadı</string>
     <string name="swipe_left_app_enabled">Sola kaydırma uygulaması etkin</string>
     <string name="swipe_right_app_enabled">Sağa kaydırma uygulaması etkin</string>

@@ -734,15 +734,15 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         ).forEach { it.setVerticalPadding(spacing) }
     }
 
-    // Rows and spacing on screen, so returning home does not rebuild unchanged widgets
-    private var shownWidgetLayout: Pair<List<List<Int>>, Int>? = null
+    // Rows and gaps on screen, so returning home does not rebuild unchanged widgets
+    private var shownWidgetLayout: Triple<List<List<Int>>, Int, Int>? = null
     private var defaultAppsPaddingTop = 0
 
     // Rows share the free height between the date and the home apps equally, and widgets in a row
     // share its width. Each widget is told its real size once laid out, to pick a fitting layout.
     private fun populateWidgets() {
         val rows = prefs.widgetRows
-        val layout = rows to prefs.widgetSpacingDp
+        val layout = Triple(rows, prefs.widgetSpacingDp, prefs.widgetEdgeDp)
         if (layout == shownWidgetLayout) return
         shownWidgetLayout = layout
         val gap = prefs.widgetSpacingDp.dpToPx()
@@ -765,7 +765,14 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
             if (container.childCount > 0) params.topMargin = gap
             container.addView(rowLayout, params)
         }
-        (container.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin = gap
+        // The apps layout pads its sides; negative margins let the widgets reach past that padding
+        val apps = binding.homeAppsLayout
+        val edge = prefs.widgetEdgeDp.dpToPx()
+        (container.layoutParams as ViewGroup.MarginLayoutParams).apply {
+            bottomMargin = gap
+            marginStart = edge - apps.paddingStart
+            marginEnd = edge - apps.paddingEnd
+        }
         container.isVisible = container.childCount > 0
         placeWidgetsArea()
     }

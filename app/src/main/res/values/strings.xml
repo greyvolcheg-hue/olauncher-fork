@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Olauncher</string>
+    <string name="app_name" translatable="false">CatLauncher</string>
     <string name="lock_layout_description" translatable="false">lock layout description to be used a unique id to lock screen</string>
     <!-- Home button for recents feature disabled -->
     <!-- <string name="recents_layout_description" translatable="false">recents layout description to be used a unique id to show recent apps</string> -->
@@ -19,10 +19,10 @@
     <string name="app">App</string>
     <string name="set_as_default_launcher">Set as default launcher</string>
     <string name="set_as_default_launcher_u"><u>Set as default launcher</u></string>
-    <string name="set_as_default_launcher_first">Set Olauncher default first</string>
+    <string name="set_as_default_launcher_first">Set CatLauncher default first</string>
     <string name="double_tap_to_lock_screen">Double tap to lock</string>
     <string name="home_button_show_recents">Home button for recents</string>
-    <string name="admin_permission_message">Olauncher promises to use the accessibility permission responsibly. Olauncher does not collect or share any data.</string>
+    <string name="admin_permission_message">CatLauncher promises to use the accessibility permission responsibly. CatLauncher does not collect or share any data.</string>
     <string name="off">Off</string>
     <string name="on">On</string>
     <string name="change_default_launcher">Change default launcher</string>
@@ -48,21 +48,17 @@
     <string name="system_default">System</string>
     <string name="dark">Dark</string>
     <string name="light">Light</string>
-    <string name="rate_us_message">Hi, you won\'t see this message again.
-        \n\nIf you\'re finding Olauncher useful, could you please leave a 5-star review? It\'ll mean the world to us. Thank you!</string>
-    <!--    <string name="share_message">Your monthly reminder - you should use your phone, not the other way round. Stay strong. You\'re doing great!-->
-    <!--         \n\nIf you have a moment to spare, could you please share Olauncher with others? Olauncher needs people. More importantly, people need Olauncher.</string>-->
     <string name="app_usage_message">To show/hide your screen time on the home screen, please allow or disallow the app usage permission.
         \n\nNote: No app usage data is collected. Everything is processed on your device.</string>
-    <string name="accessibility_service_description">The accessibility permission is required to enable the gesture - double tap to lock . Any data acquired by Olauncher via this service will not leave your device.</string>
+    <string name="accessibility_service_description">The accessibility permission is required to enable the gesture - double tap to lock . Any data acquired by CatLauncher via this service will not leave your device.</string>
     <string name="close">Close</string>
     <string name="date">Date</string>
     <string name="date_only">Date only</string>
     <string name="bottom_on">Bottom: On</string>
     <string name="bottom_off">Bottom: Off</string>
-    <string name="please_set_olauncher_as_default_first">Please set Olauncher as default first</string>
-    <string name="hidden_apps_message">Tap \'Olauncher\' at the top of Settings to find hidden apps.</string>
-    <string name="accessibility_disclosure">Please turn on Olauncher\'s accessibility service in your device\'s settings to enable Double tap to lock gesture.
+    <string name="please_set_olauncher_as_default_first">Please set CatLauncher as default first</string>
+    <string name="hidden_apps_message">Tap \'CatLauncher\' at the top of Settings to find hidden apps.</string>
+    <string name="accessibility_disclosure">Please turn on CatLauncher\'s accessibility service in your device\'s settings to enable Double tap to lock gesture.
     \n\nPlease note that this service is only used for this particular feature. Our accessibility service does not collect or share any data.</string>
     <string name="permission">Permission</string>
     <string name="enable">Enable</string>
@@ -74,7 +70,7 @@
     <string name="bold_font">Bold font</string>
     <string name="enabled">Enabled</string>
     <string name="please_turn_on_double_tap_to_unlock">Please turn on double tap to lock</string>
-    <string name="launcher_failed_to_lock_device">Olauncher failed to lock device.\nPlease check your app settings.</string>
+    <string name="launcher_failed_to_lock_device">CatLauncher failed to lock device.\nPlease check your app settings.</string>
     <string name="long_press_to_select_app">Long press to select app</string>
     <string name="unable_to_open_app">Unable to open app</string>
     <string name="unable_to_open_app_info">Unable to open app info</string>
@@ -86,7 +82,7 @@
     <string name="swipe_left_app_disabled">Swipe left app disabled</string>
     <string name="swipe_right_app_disabled">Swipe right app disabled</string>
     <string name="your_wallpaper_will_update_shortly">Your wallpaper will update shortly</string>
-    <string name="olauncher_is_not_default_launcher">Olauncher is not default. Wallpaper update will fail.</string>
+    <string name="olauncher_is_not_default_launcher">CatLauncher is not default. Wallpaper update will fail.</string>
     <string name="long_press_to_enable">Long press to enable</string>
     <string name="no_hidden_apps">No hidden apps</string>
     <string name="hidden_apps">Hidden apps</string>
@@ -144,6 +140,7 @@
     <string name="font_failed">Android cannot read this font</string>
     <string name="line_spacing">Line spacing</string>
     <string name="widget_spacing">Widget spacing</string>
+    <string name="widget_edge">Widget edge margin</string>
     <string name="dp_value">%1$d dp</string>
 
     <!-- Fork: links -->

@@ -3,9 +3,9 @@
     <string name="app">App</string>
     <string name="set_as_default_launcher">Establecer como lanzador principal</string>
     <string name="set_as_default_launcher_u"><u>Establecer como lanzador principal</u></string>
-    <string name="set_as_default_launcher_first">Establece Olauncher como predeterminado primero</string>
+    <string name="set_as_default_launcher_first">Establece CatLauncher como predeterminado primero</string>
     <string name="double_tap_to_lock_screen">Tocar dos veces para bloquear</string>
-    <string name="admin_permission_message">Olauncher promete usar el permiso de accesibilidad de manera responsable. Olauncher no recopila ni comparte ningún dato.</string>
+    <string name="admin_permission_message">CatLauncher promete usar el permiso de accesibilidad de manera responsable. CatLauncher no recopila ni comparte ningún dato.</string>
     <string name="off">No</string>
     <string name="on">Sí</string>
     <string name="change_default_launcher">Cambiar lanzador principal</string>
@@ -32,18 +32,17 @@
     <string name="system_default">Sistema</string>
     <string name="dark">Oscuro</string>
     <string name="light">Claro</string>
-    <string name="rate_us_message">Hola, no volverás a ver este mensaje.\n\nSi Olauncher te está resultando útil, ¿podrías dejarnos una reseña de 5 estrellas? Significaría muchísimo para nosotros. ¡Gracias!</string>
     <string name="app_usage_message">Para mostrar/ocultar el tiempo de pantalla en la pantalla de inicio, permita o deniegue el permiso de uso de la aplicación.
         \n\nNota: No se recopilan datos de uso de la aplicación. Todo se procesa en su dispositivo.</string>
-    <string name="accessibility_service_description">El permiso de accesibilidad es necesario para habilitar el gesto de doble toque para bloquear. Ningún dato obtenido por Olauncher a través de este servicio saldrá de tu dispositivo.</string>
+    <string name="accessibility_service_description">El permiso de accesibilidad es necesario para habilitar el gesto de doble toque para bloquear. Ningún dato obtenido por CatLauncher a través de este servicio saldrá de tu dispositivo.</string>
     <string name="close">Cerrar</string>
     <string name="date">Fecha</string>
     <string name="date_only">Solo fecha</string>
     <string name="bottom_on">Abajo: Sí</string>
     <string name="bottom_off">Abajo: No</string>
-    <string name="please_set_olauncher_as_default_first">Primero seleccione Olauncher como su iniciador predeterminado</string>
-    <string name="hidden_apps_message">Nota: pulsa \'Olauncher\' en la parte superior de esta página de Configuración para encontrar las aplicaciones ocultas.\n\nMás detalles disponibles en nuestra página \'Acerca de\'.</string>
-    <string name="accessibility_disclosure">Activa el servicio de accesibilidad de Olauncher en la configuración de tu dispositivo para habilitar el gesto de doble toque para bloquear.\n\nTen en cuenta que este servicio solo se utiliza para esta función en concreto. Nuestro servicio de accesibilidad no recopila ni comparte ningún dato.</string>
+    <string name="please_set_olauncher_as_default_first">Primero seleccione CatLauncher como su iniciador predeterminado</string>
+    <string name="hidden_apps_message">Nota: pulsa \'CatLauncher\' en la parte superior de esta página de Configuración para encontrar las aplicaciones ocultas.\n\nMás detalles disponibles en nuestra página \'Acerca de\'.</string>
+    <string name="accessibility_disclosure">Activa el servicio de accesibilidad de CatLauncher en la configuración de tu dispositivo para habilitar el gesto de doble toque para bloquear.\n\nTen en cuenta que este servicio solo se utiliza para esta función en concreto. Nuestro servicio de accesibilidad no recopila ni comparte ningún dato.</string>
     <string name="permission">Permiso</string>
     <string name="home_button_show_recents">Botón de inicio para recientes</string>
     <string name="enable">Activar</string>
@@ -54,7 +53,7 @@
     <string name="text_size">Tamaño del texto</string>
     <string name="enabled">Activado</string>
     <string name="please_turn_on_double_tap_to_unlock">Active el bloqueo con doble toque</string>
-    <string name="launcher_failed_to_lock_device">Olauncher no pudo bloquear el dispositivo.\nVerifique la configuración de la aplicación.</string>
+    <string name="launcher_failed_to_lock_device">CatLauncher no pudo bloquear el dispositivo.\nVerifique la configuración de la aplicación.</string>
     <string name="long_press_to_select_app">Mantenga pulsado para seleccionar una aplicación</string>
     <string name="unable_to_open_app">No se ha podido abrir la aplicación</string>
     <string name="system_app_cannot_delete">Aplicación del sistema, no se puede desinstalar</string>
@@ -65,7 +64,7 @@
     <string name="swipe_left_app_disabled">Deslizar hacia la izquierda para abrir aplicación: desactivado</string>
     <string name="swipe_right_app_disabled">Deslizar hacia la derecha para abrir aplicación: desactivado</string>
     <string name="your_wallpaper_will_update_shortly">Tu fondo de pantalla se actualizará en breve</string>
-    <string name="olauncher_is_not_default_launcher">Olauncher no es tu lanzador predeterminado.\nLa actualización diaria del fondo de pantalla puede fallar.</string>
+    <string name="olauncher_is_not_default_launcher">CatLauncher no es tu lanzador predeterminado.\nLa actualización diaria del fondo de pantalla puede fallar.</string>
     <string name="long_press_to_enable">Mantenga presionado para habilitar</string>
     <string name="no_hidden_apps">Sin aplicaciones ocultas</string>
     <string name="hidden_apps">Aplicaciones ocultas</string>

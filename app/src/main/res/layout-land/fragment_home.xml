@@ -80,6 +80,7 @@
         android:layout_height="match_parent"
         android:layout_marginHorizontal="74dp"
         android:gravity="center_vertical"
+        android:clipToPadding="false"
         android:orientation="vertical"
         android:paddingVertical="@dimen/home_app_padding_vertical">
 
