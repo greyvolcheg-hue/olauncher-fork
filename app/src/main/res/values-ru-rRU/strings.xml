@@ -169,4 +169,16 @@
     <string name="remove_widget_message">Он исчезнет с главного экрана.</string>
     <string name="widget_missing">Недоступный виджет</string>
     <string name="widget_add_failed">Не удалось добавить виджет</string>
+    <string name="no_widgets">Виджетов пока нет.</string>
+    <string name="tap_widget_to_remove">Нажми на виджет, чтобы убрать его.</string>
+
+    <!-- Fonts (fork) -->
+    <string name="font">Шрифт</string>
+    <string name="font_default">По умолчанию</string>
+    <string name="font_sans">Без засечек</string>
+    <string name="font_condensed">Узкий</string>
+    <string name="font_serif">С засечками</string>
+    <string name="font_monospace">Моноширинный</string>
+    <string name="font_from_file">Из файла…</string>
+    <string name="font_failed">Android не может прочитать этот файл как шрифт</string>
 </resources><!-- Russian -->

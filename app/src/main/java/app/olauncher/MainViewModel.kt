@@ -70,6 +70,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val resetLauncherLiveData = SingleLiveEvent<Unit?>()
     val pickFoldersFile = SingleLiveEvent<Unit?>()
     val addWidget = SingleLiveEvent<AppWidgetProviderInfo>()
+    val pickFontFile = SingleLiveEvent<Unit?>()
     // Home button for recents feature disabled
     // val showRecentApps = SingleLiveEvent<Unit?>()
 

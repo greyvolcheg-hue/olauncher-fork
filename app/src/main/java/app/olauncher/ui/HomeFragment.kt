@@ -744,7 +744,8 @@ class HomeFragment : BaseFragment(), View.OnClickListener, View.OnLongClickListe
         val widthDp = (widthPx / density).toInt()
         for (appWidgetId in ids) {
             val info = manager.getAppWidgetInfo(appWidgetId) ?: continue // provider uninstalled
-            val hostView = host.createView(context, appWidgetId, info)
+            // Application context: the activity's inflater would put the app font on widget text
+            val hostView = host.createView(context.applicationContext, appWidgetId, info)
             val heightDp = (info.minHeight / density).toInt()
             @Suppress("DEPRECATION")
             hostView.updateAppWidgetSize(Bundle(), widthDp, heightDp, widthDp, heightDp)

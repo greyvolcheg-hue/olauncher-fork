@@ -12,6 +12,7 @@ import android.content.pm.ActivityInfo
 import android.content.pm.LauncherApps
 import android.content.pm.ShortcutInfo
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -20,6 +21,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.LayoutInflaterCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -34,6 +36,7 @@ import app.olauncher.helper.hasBeenMinutes
 import app.olauncher.helper.isDarkThemeOn
 import app.olauncher.helper.isDaySince
 import app.olauncher.helper.isDefaultLauncher
+import app.olauncher.helper.Fonts
 import app.olauncher.helper.OlDialog
 import app.olauncher.helper.Widgets
 import app.olauncher.helper.isEinkDisplay
@@ -48,9 +51,11 @@ import app.olauncher.helper.shareApp
 import app.olauncher.helper.showLauncherSelector
 import app.olauncher.helper.showMessageDialog
 import app.olauncher.helper.showToast
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
@@ -65,6 +70,24 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
             uri?.let { viewModel.importFolders(it) }
         }
+
+    private val fontFileLauncher =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            uri?.let { importFont(it) }
+        }
+
+    private fun importFont(uri: Uri) {
+        lifecycleScope.launch {
+            val name = withContext(Dispatchers.IO) { Fonts.import(this@MainActivity, uri) }
+            if (name == null) {
+                showToast(getString(R.string.font_failed))
+                return@launch
+            }
+            prefs.fontFamily = Fonts.FROM_FILE
+            prefs.fontFileName = name
+            recreate()
+        }
+    }
 
     // The widget being added; its bind and configure results come back here
     private var pendingWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
@@ -100,6 +123,10 @@ class MainActivity : AppCompatActivity() {
         prefs = Prefs(this)
         if (isEinkDisplay()) prefs.appTheme = AppCompatDelegate.MODE_NIGHT_NO
         AppCompatDelegate.setDefaultNightMode(prefs.appTheme)
+        // Before super.onCreate, so this factory wraps AppCompat's instead of being refused
+        Fonts.typeface(this, prefs)?.let {
+            LayoutInflaterCompat.setFactory2(layoutInflater, Fonts.Factory(delegate, it, prefs.boldFont))
+        }
         super.onCreate(savedInstanceState)
         if (prefs.boldFont) theme.applyStyle(R.style.BoldFontOverlay, true)
         if (isEinkDisplay() || isSystemAnimationsDisabled()) theme.applyStyle(R.style.NoAnimationOverlay, true)
@@ -281,6 +308,9 @@ class MainActivity : AppCompatActivity() {
         viewModel.launcherResetFailed.observe(this) {
             openLauncherChooser(it)
         }
+        viewModel.pickFontFile.observe(this) {
+            fontFileLauncher.launch(arrayOf("*/*"))
+        }
         viewModel.addWidget.observe(this) { info ->
             info?.let { addWidget(it) }
         }
@@ -351,12 +381,6 @@ class MainActivity : AppCompatActivity() {
                 Constants.Dialog.DIGITAL_WELLBEING -> {
                     showMessage(R.string.screen_time, R.string.app_usage_message, R.string.permission) {
                         startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
-                    }
-                }
-
-                Constants.Dialog.PRO_MESSAGE -> {
-                    showMessage(R.string.hey, R.string.pro_message, R.string.olauncher_pro) {
-                        openUrl(Constants.URL_OLAUNCHER_PRO)
                     }
                 }
             }

@@ -33,6 +33,8 @@ class Prefs(context: Context) {
     private val FOLDERS = "FOLDERS"
     private val APP_FOLDERS = "APP_FOLDERS"
     private val WIDGET_IDS = "WIDGET_IDS"
+    private val FONT_FAMILY = "FONT_FAMILY"
+    private val FONT_FILE_NAME = "FONT_FILE_NAME"
     private val SHOW_HINT_COUNTER = "SHOW_HINT_COUNTER"
     private val APP_THEME = "APP_THEME"
     private val ABOUT_CLICKED = "ABOUT_CLICKED"
@@ -41,7 +43,6 @@ class Prefs(context: Context) {
     private val SHARE_SHOWN_TIME = "SHARE_SHOWN_TIME"
     private val TEXT_SIZE_SCALE = "TEXT_SIZE_SCALE"
     private val BOLD_FONT = "BOLD_FONT"
-    private val PRO_MESSAGE_SHOWN = "PRO_MESSAGE_SHOWN"
     private val HIDE_SET_DEFAULT_LAUNCHER = "HIDE_SET_DEFAULT_LAUNCHER"
     private val SCREEN_TIME_LAST_UPDATED = "SCREEN_TIME_LAST_UPDATED"
     private val LAUNCHER_RESTART_TIMESTAMP = "LAUNCHER_RECREATE_TIMESTAMP"
@@ -208,9 +209,6 @@ class Prefs(context: Context) {
         get() = prefs.getBoolean(BOLD_FONT, false)
         set(value) = prefs.edit { putBoolean(BOLD_FONT, value).apply() }
 
-    var proMessageShown: Boolean
-        get() = prefs.getBoolean(PRO_MESSAGE_SHOWN, false)
-        set(value) = prefs.edit { putBoolean(PRO_MESSAGE_SHOWN, value).apply() }
 
     var hideSetDefaultLauncher: Boolean
         get() = prefs.getBoolean(HIDE_SET_DEFAULT_LAUNCHER, false)
@@ -254,6 +252,15 @@ class Prefs(context: Context) {
             emptyMap()
         }
         set(value) = prefs.edit { putString(APP_FOLDERS, JSONObject(value).toString()).apply() }
+
+    // "" keeps the theme font, "file" is the imported font, anything else a system family
+    var fontFamily: String
+        get() = prefs.getString(FONT_FAMILY, "").orEmpty()
+        set(value) = prefs.edit { putString(FONT_FAMILY, value).apply() }
+
+    var fontFileName: String
+        get() = prefs.getString(FONT_FILE_NAME, "").orEmpty()
+        set(value) = prefs.edit { putString(FONT_FILE_NAME, value).apply() }
 
     // Home screen widgets in display order
     var widgetIds: List<Int>
