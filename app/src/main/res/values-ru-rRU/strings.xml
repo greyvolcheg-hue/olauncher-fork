@@ -160,6 +160,8 @@
     <string name="import_folders_result">Разложено по папкам: %1$d, не найдено названий: %2$d</string>
     <string name="import_folders_failed">Не удалось прочитать файл</string>
 
+    <string name="search">Поиск</string>
+
     <!-- Widgets (fork) -->
     <string name="widgets">Виджеты</string>
     <string name="add_widget">Добавить виджет</string>

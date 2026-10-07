@@ -1,11 +1,13 @@
 package app.olauncher.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.os.Process
 import android.text.Spannable
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -114,6 +116,23 @@ class AppDrawerFragment : BaseFragment() {
             searchTextView?.gravity = prefs.appLabelAlignment
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+        if (foldersEnabled) initFolderNavigation()
+    }
+
+    // In the main drawer the empty search field's text works as back: out of an open folder,
+    // or out of the drawer from the folder list. The magnifier starts a search.
+    @SuppressLint("ClickableViewAccessibility")
+    private fun initFolderNavigation() {
+        binding.searchButton.visibility = View.VISIBLE
+        binding.searchButton.setOnClickListener { binding.search.showKeyboard() }
+        searchTextView?.setOnTouchListener { _, event ->
+            if (!binding.search.query.isNullOrEmpty()) return@setOnTouchListener false
+            if (event.action == MotionEvent.ACTION_UP) {
+                if (openFolder != null) closeFolder()
+                else findNavController().popBackStack()
+            }
+            true
         }
     }
 
