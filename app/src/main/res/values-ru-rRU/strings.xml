@@ -124,6 +124,7 @@
     <string name="font_from_file">Из файла…</string>
     <string name="font_failed">Android не может прочитать этот шрифт</string>
     <string name="line_spacing">Межстрочный интервал</string>
+    <string name="widget_spacing">Отступы виджетов</string>
     <string name="dp_value">%1$d dp</string>
 
     <!-- Fork: links -->

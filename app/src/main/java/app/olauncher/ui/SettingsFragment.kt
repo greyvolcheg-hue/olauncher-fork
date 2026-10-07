@@ -14,6 +14,7 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
@@ -114,7 +115,15 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
             R.id.textSizeValue -> showTextSizeDialog()
             R.id.boldFont -> toggleBoldFont()
             R.id.fontValue -> showFontDialog()
-            R.id.lineSpacingValue -> showLineSpacingDialog()
+            R.id.lineSpacingValue -> showDpStepperDialog(R.string.line_spacing, ::currentLineSpacingDp, MAX_LINE_SPACING_DP) {
+                prefs.rowSpacingDp = it
+                populateLineSpacing()
+            }
+
+            R.id.widgetSpacingValue -> showDpStepperDialog(R.string.widget_spacing, { prefs.widgetSpacingDp }, MAX_WIDGET_SPACING_DP) {
+                prefs.widgetSpacingDp = it
+                populateWidgetSpacing()
+            }
 
             R.id.swipeLeftApp -> showAppListIfEnabled(Constants.FLAG_SET_SWIPE_LEFT_APP)
             R.id.swipeRightApp -> showAppListIfEnabled(Constants.FLAG_SET_SWIPE_RIGHT_APP)
@@ -166,6 +175,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.boldFont.setOnClickListener(this)
         binding.fontValue.setOnClickListener(this)
         binding.lineSpacingValue.setOnClickListener(this)
+        binding.widgetSpacingValue.setOnClickListener(this)
 
         binding.footer.setOnClickListener(this)
 
@@ -571,6 +581,7 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.boldFont.text = getString(if (prefs.boldFont) R.string.on else R.string.off)
         populateFont()
         populateLineSpacing()
+        populateWidgetSpacing()
     }
 
     // Shown in dp; unset means the layout default, which differs by screen density
@@ -581,22 +592,25 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
         binding.lineSpacingValue.text = getString(R.string.dp_value, currentLineSpacingDp())
     }
 
-    // Same stepper as text size; each step is saved at once and used the next time a list is shown
-    private fun showLineSpacingDialog() {
+    private fun populateWidgetSpacing() {
+        binding.widgetSpacingValue.text = getString(R.string.dp_value, prefs.widgetSpacingDp)
+    }
+
+    // −/+ stepper in dp on the text size dialog's layout; each step is saved at once
+    private fun showDpStepperDialog(@StringRes title: Int, current: () -> Int, max: Int, save: (Int) -> Unit) {
         var stepper: DialogTextSizeBinding? = null
-        val dialog = requireContext().createDialog(R.string.line_spacing, R.string.okay) { container ->
+        val dialog = requireContext().createDialog(title, R.string.okay) { container ->
             DialogTextSizeBinding.inflate(layoutInflater, container, false).also { stepper = it }.root
         }
         stepper?.apply {
             fun step(delta: Int) {
-                val value = (currentLineSpacingDp() + delta).coerceIn(0, MAX_LINE_SPACING_DP)
-                prefs.rowSpacingDp = value
+                val value = (current() + delta).coerceIn(0, max)
+                save(value)
                 textSizeCurrent.text = getString(R.string.dp_value, value)
-                populateLineSpacing()
             }
-            textSizeCurrent.text = getString(R.string.dp_value, currentLineSpacingDp())
-            textSizeMinus.setOnClickListener { step(-LINE_SPACING_STEP_DP) }
-            textSizePlus.setOnClickListener { step(LINE_SPACING_STEP_DP) }
+            textSizeCurrent.text = getString(R.string.dp_value, current())
+            textSizeMinus.setOnClickListener { step(-SPACING_STEP_DP) }
+            textSizePlus.setOnClickListener { step(SPACING_STEP_DP) }
         }
         showDialog(dialog)
     }
@@ -741,7 +755,8 @@ class SettingsFragment : BaseFragment(), View.OnClickListener, View.OnLongClickL
     }
 
     companion object {
-        private const val LINE_SPACING_STEP_DP = 2
+        private const val SPACING_STEP_DP = 2
         private const val MAX_LINE_SPACING_DP = 32
+        private const val MAX_WIDGET_SPACING_DP = 32
     }
 }
