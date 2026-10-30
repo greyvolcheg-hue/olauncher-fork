@@ -34,6 +34,7 @@ import app.olauncher.data.Prefs
 import app.olauncher.databinding.DialogFolderNameBinding
 import app.olauncher.databinding.FragmentAppDrawerBinding
 import app.olauncher.helper.createDialog
+import app.olauncher.helper.createListDialog
 import app.olauncher.helper.deletePinnedShortcut
 import app.olauncher.helper.hideKeyboard
 import app.olauncher.helper.isEinkDisplay
@@ -287,7 +288,7 @@ class AppDrawerFragment : BaseFragment() {
                 viewModel.openPrivateSpaceSettings()
                 findNavController().popBackStack(R.id.mainFragment, false)
             },
-            appFolderListener = { appModel, anchor -> showAssignFolderMenu(appModel, anchor) },
+            appFolderListener = { appModel, _ -> showAssignFolderMenu(appModel) },
             rowSpacingPx = prefs.rowSpacingPx()
         )
 
@@ -442,36 +443,28 @@ class AppDrawerFragment : BaseFragment() {
         else binding.search.setQuery("", false)
     }
 
-    private fun showAssignFolderMenu(appModel: AppModel, anchor: View) {
-        val folders = Folders.sorted(prefs)
+    // A dialog, not a popup menu: the popup ran off the bottom of the screen without scrolling.
+    // The current folder is left out, since moving there changes nothing.
+    private fun showAssignFolderMenu(appModel: AppModel) {
         val current = Folders.Assignments(prefs).folderOf(appModel)
-        anchor.showPopupMenu(configure = { menu ->
-            folders.forEachIndexed { index, name ->
-                menu.add(0, index, index, name).apply {
-                    isCheckable = true
-                    isChecked = name == current
-                }
-            }
-            menu.add(0, MENU_NEW_FOLDER, folders.size, R.string.new_folder)
-            if (current != null) menu.add(0, MENU_NO_FOLDER, folders.size + 1, R.string.no_folder)
-        }) { item ->
-            when (item.itemId) {
-                MENU_NEW_FOLDER -> showFolderNameDialog(R.string.new_folder, R.string.create, "") { name ->
+        val folders = Folders.sorted(prefs).filter { it != current }
+        val items = if (current != null) folders + getString(R.string.no_folder) else folders
+        requireContext().createListDialog(
+            title = R.string.folder,
+            titleText = appModel.appLabel,
+            items = items,
+            action = R.string.new_folder,
+            onAction = {
+                showFolderNameDialog(R.string.new_folder, R.string.create, "") { name ->
                     Folders.create(prefs, name)?.let { Folders.assign(prefs, appModel, it) }
                     updateCombinedAppList()
                 }
-
-                MENU_NO_FOLDER -> {
-                    Folders.assign(prefs, appModel, null)
-                    updateCombinedAppList()
-                }
-
-                else -> folders.getOrNull(item.itemId)?.let {
-                    Folders.assign(prefs, appModel, it)
-                    updateCombinedAppList()
-                }
+            },
+            onPick = { index ->
+                Folders.assign(prefs, appModel, folders.getOrNull(index))
+                updateCombinedAppList()
             }
-        }
+        ).showRespectingStatusBar()
     }
 
     private fun showFolderMenu(row: FolderRow, anchor: View) {
@@ -599,7 +592,5 @@ class AppDrawerFragment : BaseFragment() {
     companion object {
         private const val MENU_RENAME_FOLDER = 1
         private const val MENU_DELETE_FOLDER = 2
-        private const val MENU_NEW_FOLDER = 100_000
-        private const val MENU_NO_FOLDER = 100_001
     }
 }
