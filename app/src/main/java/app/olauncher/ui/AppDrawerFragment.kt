@@ -433,6 +433,9 @@ class AppDrawerFragment : BaseFragment() {
 
     private fun openFolder(folder: FolderView) {
         openFolder = folder
+        // Drop the previous list first: its bottom padding row matches the new one's in the diff,
+        // and the layout would stay anchored to it, showing the folder scrolled to the bottom.
+        adapter.submitList(null)
         updateCombinedAppList()
         binding.recyclerView.scrollToPosition(0)
     }
